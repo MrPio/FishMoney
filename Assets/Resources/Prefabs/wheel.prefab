@@ -72,6 +72,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: dadd3d764f927d145850408fbf3c3ee2, type: 3}
+      propertyPath: m_TagString
+      value: Wheel
+      objectReference: {fileID: 0}
     - target: {fileID: 6937864142031803458, guid: dadd3d764f927d145850408fbf3c3ee2, type: 3}
       propertyPath: m_LocalRotation.w
       value: -0.7071068
@@ -106,138 +110,13 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: dadd3d764f927d145850408fbf3c3ee2, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 6513685534981071423}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: dadd3d764f927d145850408fbf3c3ee2, type: 3}
-      insertIndex: -1
       addedObject: {fileID: 4869242817523265169}
-    - targetCorrespondingSourceObject: {fileID: 2311941533373286799, guid: dadd3d764f927d145850408fbf3c3ee2, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 3229686425372350937}
   m_SourcePrefab: {fileID: 100100000, guid: dadd3d764f927d145850408fbf3c3ee2, type: 3}
---- !u!1 &620163177193386612 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2311941533373286799, guid: dadd3d764f927d145850408fbf3c3ee2, type: 3}
-  m_PrefabInstance: {fileID: 2922529999897263099}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &3229686425372350937
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 620163177193386612}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2223297e97de26f4684302612d8d3c7f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  manager: {fileID: 6513685534981071423}
-  hideChildren: 0
-  selected: 0
-  label: 
-  handleScale: 1
 --- !u!1 &2616451045936678570 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: dadd3d764f927d145850408fbf3c3ee2, type: 3}
   m_PrefabInstance: {fileID: 2922529999897263099}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &6513685534981071423
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2616451045936678570}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3f6cdb0d9da4add43a1380b3888509ed, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  worldSize: 1
-  handleSize: 0.1
-  fingerHandleScale: 0.3
-  highlightScale: 0.769
-  drawSkeleton: 1
-  handleColor: {r: 0, g: 0.5, b: 1, a: 1}
-  inactiveHandleColor: {r: 0, g: 0.32, b: 0, a: 1}
-  multiColor: 1
-  multiColorVariation: 6
-  multiColorSaturation: 1
-  multiColorBrightness: 1
-  caseSensitive: 0
-  nameFilter: 
-  drawLabel: 1
-  labelFontSize: 16
-  labelColor: {r: 0, g: 0.64, b: 0, a: 1}
-  inactiveLabelColor: {r: 0, g: 0.32, b: 0, a: 1}
-  inheritHandleColor: 1
-  labelStyle:
-    m_Name: LargeLabel
-    m_Normal:
-      m_Background: {fileID: 0}
-      m_ScaledBackgrounds: []
-      m_TextColor: {r: 0, g: 0.32, b: 0, a: 1}
-    m_Hover:
-      m_Background: {fileID: 0}
-      m_ScaledBackgrounds: []
-      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
-    m_Active:
-      m_Background: {fileID: 0}
-      m_ScaledBackgrounds: []
-      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
-    m_Focused:
-      m_Background: {fileID: 0}
-      m_ScaledBackgrounds: []
-      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
-    m_OnNormal:
-      m_Background: {fileID: 0}
-      m_ScaledBackgrounds: []
-      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
-    m_OnHover:
-      m_Background: {fileID: 0}
-      m_ScaledBackgrounds: []
-      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
-    m_OnActive:
-      m_Background: {fileID: 0}
-      m_ScaledBackgrounds: []
-      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
-    m_OnFocused:
-      m_Background: {fileID: 0}
-      m_ScaledBackgrounds: []
-      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
-    m_Border:
-      m_Left: 0
-      m_Right: 0
-      m_Top: 0
-      m_Bottom: 0
-    m_Margin:
-      m_Left: 4
-      m_Right: 4
-      m_Top: 4
-      m_Bottom: 4
-    m_Padding:
-      m_Left: 2
-      m_Right: 2
-      m_Top: 1
-      m_Bottom: 1
-    m_Overflow:
-      m_Left: 0
-      m_Right: 0
-      m_Top: 0
-      m_Bottom: 0
-    m_Font: {fileID: 0}
-    m_FontSize: 16
-    m_FontStyle: 0
-    m_Alignment: 7
-    m_WordWrap: 0
-    m_RichText: 0
-    m_TextClipping: 0
-    m_ImagePosition: 0
-    m_ContentOffset: {x: 5.5, y: 0}
-    m_FixedWidth: 1
-    m_FixedHeight: 1
-    m_StretchWidth: 1
-    m_StretchHeight: 0
 --- !u!95 &4869242817523265169
 Animator:
   serializedVersion: 7

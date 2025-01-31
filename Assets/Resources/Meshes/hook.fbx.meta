@@ -1,9 +1,24 @@
 fileFormatVersion: 2
-guid: d832a15206dd8e44596aa68219277701
+guid: 29ce956dde158c841bc692610e00ea15
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: coin
+    second: {fileID: 2100000, guid: 164751fa3c5c1ce469670f24b2dce219, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: pin
+    second: {fileID: 2100000, guid: fde76a5c08104d747bad080ab5c976c1, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: wire
+    second: {fileID: 2100000, guid: bf78973df6eca914a81c5914f12dc3b1, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
@@ -88,7 +103,7 @@ ModelImporter:
     armStretch: 0.05
     legStretch: 0.05
     feetSpacing: 0
-    globalScale: 0.01
+    globalScale: 1
     rootMotionBoneName: 
     hasTranslationDoF: 0
     hasExtraRoot: 0
