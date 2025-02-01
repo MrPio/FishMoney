@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using UnityEngine;
 
@@ -12,6 +11,7 @@ namespace Prefabs
         Launching
     }
 
+    [RequireComponent(typeof(AudioSource))]
     public class Hook : MonoBehaviour
     {
         private static readonly int
@@ -36,12 +36,15 @@ namespace Prefabs
         [SerializeField] private Transform itemHolder;
         [SerializeField] private AnimationCurve rotationCurve, launchCurve, reachCurve;
         [SerializeField] private Animator hookAnimator, playerAnimator, wheelAnimator;
+        [SerializeField] private AudioClip launchClip, retreatClip, itemPickupClip;
+        [SerializeField] private float retreatClipDelay = 1f;
 
         private GameManager _gm;
         private float _launchStart, _retreatStart, _acc, _actualReach, _rotX;
         private Vector3 _startRotation, _startPosition;
         private HookState _state;
         private Item _grabbedItem;
+        private AudioSource _audioSource;
 
         private float Reach => reach * reachCurve.Evaluate(_rotX / maxRotation);
         private float UpFactor => upFactor * (_grabbedItem is null ? 1f : _grabbedItem.ItemModel.Weight);
@@ -49,6 +52,7 @@ namespace Prefabs
         private void Awake()
         {
             _gm = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
+            _audioSource = GetComponent<AudioSource>();
         }
 
         private void Start()
@@ -77,6 +81,7 @@ namespace Prefabs
                     playerAnimator.SetTrigger(PlayerLaunch);
                     wheelAnimator.SetTrigger(WheelLaunch);
                     hookAnimator.SetTrigger(HookLaunch);
+                    _audioSource.PlayOneShot(launchClip);
                 }
             }
 
@@ -96,6 +101,7 @@ namespace Prefabs
                     playerAnimator.SetTrigger(PlayerTurn);
                     wheelAnimator.SetTrigger(WheelTurn);
                     hookAnimator.SetTrigger(HookRetreat);
+                    StartCoroutine(PlayRetreatClip());
                 }
             }
 
@@ -131,8 +137,19 @@ namespace Prefabs
             }
         }
 
+        IEnumerator PlayRetreatClip()
+        {
+            while (_state is HookState.Retreating)
+            {
+                yield return new WaitForSeconds(retreatClipDelay / 2);
+                _audioSource.PlayOneShot(retreatClip);
+                yield return new WaitForSeconds(retreatClipDelay / 2);
+            }
+        }
+
         private void CollectItem()
         {
+            _audioSource.PlayOneShot(itemPickupClip);
             _gm.CollectItem(_grabbedItem.ItemModel);
             Destroy(_grabbedItem.gameObject);
             _grabbedItem = null;
@@ -151,6 +168,8 @@ namespace Prefabs
                 playerAnimator.SetTrigger(PlayerTurn);
                 wheelAnimator.SetTrigger(WheelTurn);
                 hookAnimator.SetTrigger(HookGrab);
+                StartCoroutine(PlayRetreatClip());
+                _audioSource.PlayOneShot(Resources.Load<AudioClip>(_grabbedItem.ItemModel.Clip));
             }
         }
     }

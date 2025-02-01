@@ -21,30 +21,30 @@ namespace Model
     {
         public static readonly Item[] Items =
         {
-            new(ItemType.CoinS, 5f, 200, "CoinS"),
-            new(ItemType.CoinM, 8f, 300, "CoinM"),
-            new(ItemType.CoinL, 15f, 500, "CoinL"),
-            new(ItemType.RockS, 12f, 50, "RockS"),
-            new(ItemType.RockL, 22.5f, 100, "RockL"),
-            new(ItemType.Pouch, 7f, null, "Pouch"),
-            new(ItemType.Treasure, 18f, null, "Treasure"),
-            new(ItemType.Explosive, 5f, 10, "Explosive"),
-            new(ItemType.Diamond, 3.5f, 1000, "Diamond"),
-            new(ItemType.Bird, 2.5f, 10, "Bird"),
-            new(ItemType.BirdDiamond, 4f, 1000, "BirdDiamond"),
+            new(ItemType.CoinS, 5f, 200, "Audio/Items/coin"),
+            new(ItemType.CoinM, 8f, 300, "Audio/Items/coin"),
+            new(ItemType.CoinL, 15f, 500, "Audio/Items/coin"),
+            new(ItemType.RockS, 12f, 50, "Audio/Items/rock"),
+            new(ItemType.RockL, 22.5f, 100, "Audio/Items/rock"),
+            new(ItemType.Pouch, 7f, null, "Audio/Items/pouch"),
+            new(ItemType.Treasure, 18f, null, "Audio/Items/treasure"),
+            new(ItemType.Explosive, 5f, 10, "Audio/Items/explosive"),
+            new(ItemType.Diamond, 3.5f, 1000, "Audio/Items/diamond"),
+            new(ItemType.Bird, 2.5f, 10, "Audio/Items/bird"),
+            new(ItemType.BirdDiamond, 4f, 1000, "Audio/Items/bird"),
         };
 
         public float Weight;
         private int? _value;
         public ItemType Type;
-        public string Prefab;
+        public string Clip;
 
-        public Item(ItemType type, float weight, int? value, string prefab)
+        private Item(ItemType type, float weight, int? value, string clip)
         {
             Type = type;
             Weight = weight;
             _value = value;
-            Prefab = prefab;
+            Clip = clip;
         }
 
         public int Value
