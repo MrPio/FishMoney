@@ -46,11 +46,15 @@
     <Analyzer Include="D:\Programmi\Unity\6000.0.35f1\Editor\Data\Tools\Unity.SourceGenerators\Unity.UIToolkit.SourceGenerator.dll" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\TargetMenu.cs" />
+    <Compile Include="Assets\Scripts\Managers\GameManager.cs" />
     <Compile Include="Assets\Scripts\Model\Item.cs" />
     <Compile Include="Assets\Scripts\Partials\Maskable.cs" />
+    <Compile Include="Assets\Scripts\Model\Level.cs" />
     <Compile Include="Assets\Scripts\Managers\SceneManager.cs" />
     <Compile Include="Assets\Scripts\Prefabs\Hook.cs" />
-    <Compile Include="Assets\GameManager.cs" />
+    <Compile Include="Assets\Scripts\Prefabs\Level.cs" />
+    <Compile Include="Assets\Clickable.cs" />
     <Compile Include="Assets\Scripts\Prefabs\Item.cs" />
     <None Include="Assets\Resources\Materials\Shaders\Mask.shader" />
     <Reference Include="UnityEngine">
@@ -895,6 +899,9 @@
     </Reference>
     <Reference Include="Unity.VisualScripting.State">
       <HintPath>C:\Users\MrPio\Desktop\Ide Projects\UnityProjects\Fish Money 2\Library\ScriptAssemblies\Unity.VisualScripting.State.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.2D.Sprite.Editor">
+      <HintPath>C:\Users\MrPio\Desktop\Ide Projects\UnityProjects\Fish Money 2\Library\ScriptAssemblies\Unity.2D.Sprite.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.AI.Navigation.Editor.ConversionSystem">
       <HintPath>C:\Users\MrPio\Desktop\Ide Projects\UnityProjects\Fish Money 2\Library\ScriptAssemblies\Unity.AI.Navigation.Editor.ConversionSystem.dll</HintPath>

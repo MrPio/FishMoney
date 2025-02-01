@@ -1,4 +1,5 @@
 using System.Collections;
+using Managers;
 using UnityEngine;
 
 namespace Prefabs
@@ -149,8 +150,8 @@ namespace Prefabs
 
         private void CollectItem()
         {
-            _audioSource.PlayOneShot(itemPickupClip);
-            _gm.CollectItem(_grabbedItem.ItemModel);
+            if (_gm.CollectItem(_grabbedItem.ItemModel))
+                _audioSource.PlayOneShot(itemPickupClip);
             Destroy(_grabbedItem.gameObject);
             _grabbedItem = null;
         }

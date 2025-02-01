@@ -8,6 +8,8 @@ TagManager:
   - Item
   - GameManager
   - LastEarn
+  - Level
+  - Scene
   layers:
   - Default
   - TransparentFX

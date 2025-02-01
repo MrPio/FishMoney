@@ -46,7 +46,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   idleAnimationFrequencyRange: {x: 2, y: 7}
-  itemType: 0
+  itemType: 3
 --- !u!1 &9030049282686121816
 GameObject:
   m_ObjectHideFlags: 0

@@ -9,7 +9,7 @@ namespace Model
         CoinL,
         RockS,
         RockL,
-        Pouch,
+        Sack,
         Treasure,
         Explosive,
         Diamond,
@@ -26,7 +26,7 @@ namespace Model
             new(ItemType.CoinL, 15f, 500, "Audio/Items/coin"),
             new(ItemType.RockS, 12f, 50, "Audio/Items/rock"),
             new(ItemType.RockL, 22.5f, 100, "Audio/Items/rock"),
-            new(ItemType.Pouch, 7f, null, "Audio/Items/pouch"),
+            new(ItemType.Sack, 7f, null, "Audio/Items/sack"),
             new(ItemType.Treasure, 18f, null, "Audio/Items/treasure"),
             new(ItemType.Explosive, 5f, 10, "Audio/Items/explosive"),
             new(ItemType.Diamond, 3.5f, 1000, "Audio/Items/diamond"),
@@ -34,10 +34,10 @@ namespace Model
             new(ItemType.BirdDiamond, 4f, 1000, "Audio/Items/bird"),
         };
 
-        public float Weight;
-        private int? _value;
-        public ItemType Type;
-        public string Clip;
+        public readonly float Weight;
+        private readonly int? _value;
+        public readonly ItemType Type;
+        public readonly string Clip;
 
         private Item(ItemType type, float weight, int? value, string clip)
         {
@@ -54,7 +54,7 @@ namespace Model
                 var random = new Random();
                 return Type switch
                 {
-                    ItemType.Pouch => random.Next(2) == 0 ? 0 : random.Next(100, 600),
+                    ItemType.Sack => random.Next(2) == 0 ? 0 : random.Next(100, 600),
                     ItemType.Treasure => random.Next(2) == 0 ? 0 : random.Next(500, 1500),
                     _ => _value ?? 0
                 };
