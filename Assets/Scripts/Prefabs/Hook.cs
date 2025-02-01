@@ -73,7 +73,6 @@ namespace Prefabs
                 if (Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKey(KeyCode.Space))
                 {
                     _launchStart = Time.time;
-                    print($"{reachCurve.Evaluate(_rotX / maxRotation)}- {_rotX / maxRotation}");
                     _state = HookState.Launching;
                     playerAnimator.SetTrigger(PlayerLaunch);
                     wheelAnimator.SetTrigger(WheelLaunch);
@@ -148,6 +147,7 @@ namespace Prefabs
                 _grabbedItem = other.gameObject.transform.parent.GetComponent<Item>();
                 _grabbedItem.transform.SetParent(itemHolder);
                 _grabbedItem.transform.localPosition = Vector3.zero;
+                _grabbedItem.transform.Rotate(Vector3.back, transform.localRotation.eulerAngles.x);
                 playerAnimator.SetTrigger(PlayerTurn);
                 wheelAnimator.SetTrigger(WheelTurn);
                 hookAnimator.SetTrigger(HookGrab);

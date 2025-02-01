@@ -57,9 +57,13 @@ public class GameManager : MonoBehaviour
         _collectedItems.Add(item);
         var value = item.Value;
         //TODO account for perks
-        Money += value;
-        _lastEarnText.text = $"+${value:N0}";
-        _lastEarnAnimator.SetTrigger(Set);
+        if (value > 0)
+        {
+            Money += value;
+            _lastEarnText.text = $"+${value:N0}";
+            _lastEarnAnimator.SetTrigger(Set);
+        }
+
         print($"Collected {item.Type}!");
     }
 }

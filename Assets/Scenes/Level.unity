@@ -2787,7 +2787,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3cf63b3c681c7b042be2887b67c69c64, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skySpeed: 1
+  skySpeed: 0.75
 --- !u!4 &831689102
 Transform:
   m_ObjectHideFlags: 0
@@ -4402,7 +4402,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: +$1500
+  m_text: '
+
+'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 2eb9af8bcedd23849b0bc419756eff9f, type: 2}
   m_sharedMaterial: {fileID: -3153200722704443342, guid: 2eb9af8bcedd23849b0bc419756eff9f, type: 2}
