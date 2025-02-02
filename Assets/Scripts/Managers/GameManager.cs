@@ -150,9 +150,25 @@ namespace Managers
             if (item is null) return false;
             _collectedItems.Add(item);
             var value = item.Value;
-            //TODO account for perks
+
             if (value > 0)
             {
+                // Magnifier
+                if (Magnifier > 0 && item.Type is ItemType.RockS or ItemType.RockL)
+                {
+                    Magnifier -= 1;
+                    if (item.Type is ItemType.RockS) value = 300;
+                    else if (item.Type is ItemType.RockL) value = 500;
+                }
+
+                // Credit Card
+                if (HasCreditCard && item.Type is ItemType.Diamond or ItemType.BirdDiamond)
+                    value += (int)(value * 0.5);
+
+                // Clover
+                if (HasClover && item.Type is ItemType.Sack or ItemType.Treasure)
+                    value += (int)(value * 0.35);
+
                 Money += value;
                 _lastEarnText.text = $"+${value:N0}";
                 _lastEarnAnimator.SetTrigger(Set);

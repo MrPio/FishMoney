@@ -50,6 +50,8 @@ namespace Prefabs
 
         private float Reach => reach * reachCurve.Evaluate(_rotX / maxRotation);
         private float UpFactor => upFactor * (_grabbedItem is null ? 1f : _grabbedItem.ItemModel.Weight);
+        private float RotationSpeed => rotationSpeed * (_gm.HasRotation ? 1.5f : 0);
+        private float LaunchDuration => launchDuration * (_gm.HasWater ? 0.666f : 0);
 
         private void Awake()
         {
@@ -70,7 +72,7 @@ namespace Prefabs
             if (_state is HookState.Idle)
             {
                 _acc += Time.deltaTime;
-                _rotX = rotationCurve.Evaluate(_acc * rotationSpeed) * maxRotation;
+                _rotX = rotationCurve.Evaluate(_acc * RotationSpeed) * maxRotation;
                 transform.localRotation = Quaternion.Euler(
                     x: _rotX,
                     y: _startRotation.y,
@@ -91,12 +93,12 @@ namespace Prefabs
             if (_state is HookState.Launching)
             {
                 var dt = Time.time - _launchStart;
-                _actualReach = launchCurve.Evaluate(dt / launchDuration) * Reach;
+                _actualReach = launchCurve.Evaluate(dt / LaunchDuration) * Reach;
                 transform.localPosition =
                     _startPosition + Quaternion.Euler(0, 0, -90) * transform.forward * _actualReach;
 
                 // Done launching
-                if (dt > launchDuration)
+                if (dt > LaunchDuration)
                 {
                     _retreatStart = Time.time;
                     _state = HookState.Retreating;
@@ -110,20 +112,13 @@ namespace Prefabs
             // Retreating
             else if (_state is HookState.Retreating)
             {
-                if (_gm.Bombs > 0 && Time.time - _lastBombThrown > 1 && Input.GetKeyDown(KeyCode.UpArrow))
-                {
-                    _lastBombThrown = Time.time;
-                    playerAnimator.SetTrigger(PlayerThrow);
-                    _gm.Bombs -= 1;
-                }
-
                 var dt = Time.time - _retreatStart;
                 var dx = (1 - dt /
-                    (launchDuration * UpFactor * _actualReach / Reach)) * _actualReach;
+                    (LaunchDuration * UpFactor * _actualReach / Reach)) * _actualReach;
                 transform.localPosition = _startPosition + Quaternion.Euler(0, 0, -90) * transform.forward * dx;
 
                 // Done retreating
-                if (dt > launchDuration * UpFactor * _actualReach / Reach)
+                if (dt > LaunchDuration * UpFactor * _actualReach / Reach)
                 {
                     transform.localPosition = _startPosition;
                     _state = HookState.None;
@@ -142,6 +137,15 @@ namespace Prefabs
                         if (_grabbedItem is not null)
                             CollectItem();
                     }
+                }
+
+                // Bomb input
+                if (_gm.Bombs > 0 && Time.time - _lastBombThrown > 1 && Input.GetKeyDown(KeyCode.UpArrow) &&
+                    dt / (LaunchDuration * UpFactor * _actualReach / Reach) < 0.9)
+                {
+                    _lastBombThrown = Time.time;
+                    playerAnimator.SetTrigger(PlayerThrow);
+                    _gm.Bombs -= 1;
                 }
             }
         }
@@ -187,10 +191,10 @@ namespace Prefabs
             if (_state is HookState.Retreating)
             {
                 var dt = Time.time - _retreatStart;
-                var percent = dt / (launchDuration * UpFactor * _actualReach / Reach);
+                var percent = dt / (LaunchDuration * UpFactor * _actualReach / Reach);
                 Destroy(_grabbedItem.gameObject);
                 _grabbedItem = null;
-                _retreatStart = Time.time - percent * launchDuration * UpFactor * _actualReach / Reach;
+                _retreatStart = Time.time - percent * LaunchDuration * UpFactor * _actualReach / Reach;
                 _audioSource.PlayOneShot(freeHookClip);
             }
         }
