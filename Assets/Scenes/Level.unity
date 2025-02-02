@@ -3985,6 +3985,11 @@ MonoBehaviour:
   mainMenuClip: {fileID: 8300000, guid: 14bed604ab35b1745a08d96c12d44135, type: 3}
   slideClip: {fileID: 8300000, guid: 39d8c1eb9dcff9c4b92a66217c9c80cc, type: 3}
   mainScene: {fileID: 6853573534814581977, guid: 5187863495ecd7c4c85748f72863ca06, type: 3}
+  waterPerk: {fileID: 0}
+  rotationPerk: {fileID: 0}
+  cloverPerk: {fileID: 0}
+  creditCardPerk: {fileID: 0}
+  magnifierPerk: {fileID: 0}
   mainMenu: {fileID: 1331401904}
   targetMenu: {fileID: 1176573292}
   mainMenuScene: {fileID: 3878621661655114748, guid: b230f8766a162e3488707b8791209f85, type: 3}
@@ -6461,10 +6466,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 175939071736075723, guid: 5187863495ecd7c4c85748f72863ca06, type: 3}
-      propertyPath: launchDuration
-      value: 1.1
-      objectReference: {fileID: 0}
     - target: {fileID: 3647878281640788113, guid: 5187863495ecd7c4c85748f72863ca06, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -6504,6 +6505,10 @@ PrefabInstance:
     - target: {fileID: 3647878281640788113, guid: 5187863495ecd7c4c85748f72863ca06, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6234093744460116855, guid: 5187863495ecd7c4c85748f72863ca06, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6853573534814581977, guid: 5187863495ecd7c4c85748f72863ca06, type: 3}
       propertyPath: m_Name

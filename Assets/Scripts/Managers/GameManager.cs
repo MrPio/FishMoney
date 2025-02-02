@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Model;
 using Prefabs;
 using TMPro;
 using Unity.Mathematics;
@@ -16,13 +17,13 @@ namespace Managers
         [SerializeField] private TextMeshProUGUI moneyText, targetText, levelText, timeText;
         [SerializeField] private AudioClip timeUpClip, successClip, levelFinish, gameOverClip, mainMenuClip, slideClip;
         [SerializeField] private GameObject mainScene;
+        [SerializeField] private GameObject waterPerk, rotationPerk, cloverPerk, creditCardPerk, magnifierPerk;
 
         [SerializeField]
         private GameObject mainMenu, targetMenu, mainMenuScene, successMenu, gameOverMenu, shopMenu, statsUI;
 
         public int levelDuration = 60;
-        [NonSerialized] public int Magnifier;
-        private int _bombs = 0;
+        private int _bombs = 0, _magnifier = 0;
         [NonSerialized] public bool HasWater, HasRotation, HasClover, HasCreditCard;
         private int _money;
         public Level Level;
@@ -55,6 +56,17 @@ namespace Managers
                 _bombs = value;
                 if (_isInLevel)
                     BombsContainer.SetBombs(_bombs);
+            }
+        }
+
+        public int Magnifier
+        {
+            get => _magnifier;
+            set
+            {
+                _magnifier = value;
+                if (_isInLevel)
+                    SetPerks();
             }
         }
 
@@ -177,9 +189,19 @@ namespace Managers
                 Instantiate(levelGo, sceneGo.transform);
                 statsUI.SetActive(true);
                 BombsContainer.SetBombs(_bombs);
+                SetPerks();
                 Cursor.lockState = CursorLockMode.Locked;
                 Cursor.visible = false;
             }
+        }
+
+        private void SetPerks()
+        {
+            waterPerk.SetActive(HasWater);
+            rotationPerk.SetActive(HasRotation);
+            cloverPerk.SetActive(HasClover);
+            creditCardPerk.SetActive(HasCreditCard);
+            magnifierPerk.SetActive(Magnifier > 0);
         }
     }
 }
