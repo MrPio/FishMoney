@@ -1,9 +1,12 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
-using Model;
+using Prefabs;
 using TMPro;
 using Unity.Mathematics;
 using UnityEngine;
+using Item = Model.Item;
+using Level = Model.Level;
 
 namespace Managers
 {
@@ -18,6 +21,9 @@ namespace Managers
         private GameObject mainMenu, targetMenu, mainMenuScene, successMenu, gameOverMenu, shopMenu, statsUI;
 
         public int levelDuration = 60;
+        [NonSerialized] public int Magnifier;
+        private int _bombs = 0;
+        [NonSerialized] public bool HasWater, HasRotation, HasClover, HasCreditCard;
         private int _money;
         public Level Level;
         private float _gameStart, _lastTimeUp;
@@ -28,6 +34,9 @@ namespace Managers
         private bool _isInLevel;
         private AudioSource _audioSource;
 
+        private BombsContainer BombsContainer =>
+            GameObject.FindWithTag("BombsContainer").GetComponent<BombsContainer>();
+
         public int Money
         {
             get => _money;
@@ -35,6 +44,17 @@ namespace Managers
             {
                 _money = value;
                 moneyText.text = "$ " + _money.ToString("N0");
+            }
+        }
+
+        public int Bombs
+        {
+            get => _bombs;
+            set
+            {
+                _bombs = value;
+                if (_isInLevel)
+                    BombsContainer.SetBombs(_bombs);
             }
         }
 
@@ -71,9 +91,17 @@ namespace Managers
                     _lastTimeUp = Time.time;
                 }
 
+                // End of level
                 if (leftTime < -0.25)
                 {
                     _isInLevel = false;
+                    Magnifier = 0;
+                    HasWater = false;
+                    HasRotation = false;
+                    HasClover = false;
+                    HasCreditCard = false;
+
+                    // Success
                     if (Money >= Level.Target)
                     {
                         successMenu.SetActive(true);
@@ -89,6 +117,7 @@ namespace Managers
                             _audioSource.Play();
                         }
                     }
+                    // Game Over
                     else
                     {
                         gameOverMenu.SetActive(true);
@@ -127,6 +156,7 @@ namespace Managers
             _audioSource.Stop();
             _audioSource.PlayOneShot(slideClip);
             mainMenu.SetActive(false);
+            shopMenu.SetActive(false);
             targetMenu.SetActive(true);
             foreach (var go in GameObject.FindGameObjectsWithTag("Scene"))
                 Destroy(go);
@@ -135,7 +165,7 @@ namespace Managers
 
             IEnumerator StartLevel()
             {
-                yield return new WaitForSeconds(5);
+                yield return new WaitForSeconds(1); //TODO 5
                 targetMenu.SetActive(false);
                 levelText.text = Level.Id.ToString();
                 targetText.text = "$ " + Level.Target.ToString("N0");
@@ -146,6 +176,7 @@ namespace Managers
                 var levelGo = Resources.Load<GameObject>("Prefabs/Levels/" + Level.Id.ToString("D3"));
                 Instantiate(levelGo, sceneGo.transform);
                 statsUI.SetActive(true);
+                BombsContainer.SetBombs(_bombs);
                 Cursor.lockState = CursorLockMode.Locked;
                 Cursor.visible = false;
             }

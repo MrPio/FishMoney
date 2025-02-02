@@ -19,6 +19,7 @@ namespace Prefabs
             PlayerIdle = Animator.StringToHash("idle"),
             PlayerLaunch = Animator.StringToHash("launch"),
             PlayerTurn = Animator.StringToHash("turn"),
+            PlayerThrow = Animator.StringToHash("throw"),
             WheelIdle = Animator.StringToHash("idle"),
             WheelLaunch = Animator.StringToHash("launch"),
             WheelTurn = Animator.StringToHash("turn"),
@@ -37,11 +38,11 @@ namespace Prefabs
         [SerializeField] private Transform itemHolder;
         [SerializeField] private AnimationCurve rotationCurve, launchCurve, reachCurve;
         [SerializeField] private Animator hookAnimator, playerAnimator, wheelAnimator;
-        [SerializeField] private AudioClip launchClip, retreatClip, itemPickupClip;
+        [SerializeField] private AudioClip launchClip, retreatClip, itemPickupClip, freeHookClip;
         [SerializeField] private float retreatClipDelay = 1f;
 
         private GameManager _gm;
-        private float _launchStart, _retreatStart, _acc, _actualReach, _rotX;
+        private float _launchStart, _retreatStart, _acc, _actualReach, _rotX, _lastBombThrown;
         private Vector3 _startRotation, _startPosition;
         private HookState _state;
         private Item _grabbedItem;
@@ -75,7 +76,7 @@ namespace Prefabs
                     y: _startRotation.y,
                     z: _startRotation.z
                 );
-                if (Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKey(KeyCode.Space))
+                if (Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.Space))
                 {
                     _launchStart = Time.time;
                     _state = HookState.Launching;
@@ -109,6 +110,13 @@ namespace Prefabs
             // Retreating
             else if (_state is HookState.Retreating)
             {
+                if (_gm.Bombs > 0 && Time.time - _lastBombThrown > 1 && Input.GetKeyDown(KeyCode.UpArrow))
+                {
+                    _lastBombThrown = Time.time;
+                    playerAnimator.SetTrigger(PlayerThrow);
+                    _gm.Bombs -= 1;
+                }
+
                 var dt = Time.time - _retreatStart;
                 var dx = (1 - dt /
                     (launchDuration * UpFactor * _actualReach / Reach)) * _actualReach;
@@ -126,8 +134,8 @@ namespace Prefabs
 
                     IEnumerator GotoIdle()
                     {
-                        yield return new WaitForSeconds(0.25f);
-                        _acc += 0.25f;
+                        yield return new WaitForSeconds(0.1f);
+                        _acc += 0.1f;
                         _state = HookState.Idle;
 
                         // Item collection
@@ -138,7 +146,7 @@ namespace Prefabs
             }
         }
 
-        IEnumerator PlayRetreatClip()
+        private IEnumerator PlayRetreatClip()
         {
             while (_state is HookState.Retreating)
             {
@@ -171,6 +179,19 @@ namespace Prefabs
                 hookAnimator.SetTrigger(HookGrab);
                 StartCoroutine(PlayRetreatClip());
                 _audioSource.PlayOneShot(Resources.Load<AudioClip>(_grabbedItem.ItemModel.Clip));
+            }
+        }
+
+        public void Free()
+        {
+            if (_state is HookState.Retreating)
+            {
+                var dt = Time.time - _retreatStart;
+                var percent = dt / (launchDuration * UpFactor * _actualReach / Reach);
+                Destroy(_grabbedItem.gameObject);
+                _grabbedItem = null;
+                _retreatStart = Time.time - percent * launchDuration * UpFactor * _actualReach / Reach;
+                _audioSource.PlayOneShot(freeHookClip);
             }
         }
     }

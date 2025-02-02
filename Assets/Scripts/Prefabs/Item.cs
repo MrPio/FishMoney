@@ -21,7 +21,7 @@ namespace Prefabs
         {
             _animator = GetComponentInChildren<Animator>();
             _gm = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
-            _delay = Random.Range(idleAnimationFrequencyRange.x, idleAnimationFrequencyRange.y);
+            _delay = Random.Range(idleAnimationFrequencyRange.x, idleAnimationFrequencyRange.y)/2;
         }
 
         private void FixedUpdate()
