@@ -1,7 +1,9 @@
 # Fish Money
 Collect money to complete all the levels!
 
-### [⬇️ Download it here!](https://github.com/MrPio/FishMoney/releases/tag/Stable)
+*All the models were made by me in Blender 4.3*
+
+## [⬇️ Download it here!](https://github.com/MrPio/FishMoney/releases/tag/Stable)
 
 <p align="center">
   <img height="400rem" src="https://github.com/user-attachments/assets/6dfa9a41-4ac1-4f91-83a3-c32811e0f6f4"></img>
