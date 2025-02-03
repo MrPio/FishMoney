@@ -24,7 +24,10 @@ public class ShopMenu : MonoBehaviour
 {
     [SerializeField] private List<Merchant> merchants;
     [SerializeField] private TextMeshProUGUI dialogBoxText, moneyText, priceText;
-    [SerializeField] private Image backgroundImage, merchantImage, dialogBox;
+
+    [SerializeField]
+    private Image backgroundImage, merchantImage, merchantTargetMenuImage, dialogBox, dialogBoxTargetMenu;
+
     [SerializeField] private List<ShopItem> shopItems;
     [SerializeField] private AudioClip itemSelectClip;
     [SerializeField] private AudioClip itemBuyClip, noBuyClip;
@@ -47,10 +50,13 @@ public class ShopMenu : MonoBehaviour
     private void LoadShop()
     {
         var level = _gm.Level ?? Level.Levels[0];
-        var merchant = merchants.First(it => it.fromLevel <= level.Id);
+        var merchant = merchants.Last(it => it.fromLevel <= level.Id);
+        var merchant2 = merchants.Last(it => it.fromLevel <= level.Id + 1);
         merchantImage.sprite = merchant.sprite;
+        merchantTargetMenuImage.sprite = merchant2.sprite;
         dialogBoxText.text = merchant.welcomeSentence;
         dialogBox.color = merchant.boxColor;
+        dialogBoxTargetMenu.color = merchant2.boxColor;
         backgroundImage.sprite = merchant.background;
         foreach (var shopItem in shopItems)
         {
@@ -67,7 +73,7 @@ public class ShopMenu : MonoBehaviour
     public void SelectItem(ShopItemType? shopItemType)
     {
         var level = _gm.Level ?? Level.Levels[0];
-        var merchant = merchants.First(it => it.fromLevel <= level.Id);
+        var merchant = merchants.Last(it => it.fromLevel <= level.Id);
         if (shopItemType is null)
         {
             dialogBoxText.text = merchant.welcomeSentence;

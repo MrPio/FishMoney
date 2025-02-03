@@ -2618,7 +2618,7 @@ PrefabInstance:
       objectReference: {fileID: 8300000, guid: b8b7e6d9cb0eb9a478b660981715c99a, type: 3}
     - target: {fileID: 3525582860607655581, guid: e4bcfd0680e57404892c8784e3b1c4b8, type: 3}
       propertyPath: maxRotation
-      value: 60
+      value: 65
       objectReference: {fileID: 0}
     - target: {fileID: 3525582860607655581, guid: e4bcfd0680e57404892c8784e3b1c4b8, type: 3}
       propertyPath: retreatClip
@@ -2630,7 +2630,7 @@ PrefabInstance:
       objectReference: {fileID: 8300000, guid: 854d29cff7f72c04f989e024612754f9, type: 3}
     - target: {fileID: 3525582860607655581, guid: e4bcfd0680e57404892c8784e3b1c4b8, type: 3}
       propertyPath: rotationSpeed
-      value: 0.38
+      value: 0.39
       objectReference: {fileID: 0}
     - target: {fileID: 3525582860607655581, guid: e4bcfd0680e57404892c8784e3b1c4b8, type: 3}
       propertyPath: wheelAnimator
@@ -2642,7 +2642,7 @@ PrefabInstance:
       objectReference: {fileID: 8300000, guid: c523a95b2b7e1f0449612f13b12b0bd3, type: 3}
     - target: {fileID: 3525582860607655581, guid: e4bcfd0680e57404892c8784e3b1c4b8, type: 3}
       propertyPath: launchDuration
-      value: 1.45
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 3525582860607655581, guid: e4bcfd0680e57404892c8784e3b1c4b8, type: 3}
       propertyPath: playerAnimator
@@ -2722,7 +2722,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6439105846068881958, guid: e4bcfd0680e57404892c8784e3b1c4b8, type: 3}
       propertyPath: m_Radius
-      value: 0.72
+      value: 0.7
       objectReference: {fileID: 0}
     - target: {fileID: 6468486410297243702, guid: e4bcfd0680e57404892c8784e3b1c4b8, type: 3}
       propertyPath: m_LocalPosition.x
@@ -7055,8 +7055,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bomb: {fileID: 6958308902441610356, guid: ef87eeca89b387f41bd4d06b941e963f, type: 3}
   hook: {fileID: 175939071736075723}
-  bombLaunchDuration: 0.4
-  bombRotationSpeed: 180
+  bombLaunchDuration: 0.3
+  bombRotationSpeed: 360
   launchPoint: {fileID: 7277879788134517097}
   launchCurve:
     serializedVersion: 2

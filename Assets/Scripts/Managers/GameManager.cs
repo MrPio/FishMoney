@@ -221,6 +221,8 @@ namespace Managers
             targetMenu.SetActive(true);
             foreach (var go in GameObject.FindGameObjectsWithTag("Scene"))
                 Destroy(go);
+            var levelGo = Resources.Load<GameObject>("Prefabs/Levels/" + Level.Id.ToString("D3"));
+            RenderSettings.skybox = levelGo.GetComponent<Prefabs.Level>().skybox;
             StartCoroutine(StartLevel());
             return;
 
@@ -234,9 +236,9 @@ namespace Managers
                 _gameStart = Time.time;
                 _isInLevel = true;
                 var sceneGo = Instantiate(mainScene);
-                var levelGo = Resources.Load<GameObject>("Prefabs/Levels/" + Level.Id.ToString("D3"));
                 Instantiate(levelGo, sceneGo.transform);
                 statsUI.SetActive(true);
+                timeText.color = Color.white;
                 inputHUD.SetActive(InputManager.IsMobile);
                 BombsContainer.SetBombs(_bombs);
                 SetPerks();
@@ -253,6 +255,10 @@ namespace Managers
             perksContainer.Find("clover_container").gameObject.SetActive(HasClover);
             perksContainer.Find("credit_card_container").gameObject.SetActive(HasCreditCard);
             perksContainer.Find("magnifier_container").gameObject.SetActive(Magnifier > 0);
+
+            // Set turn animation speed
+            GameObject.FindWithTag("Player").GetComponent<Animator>().SetFloat("speed", HasWater ? 1.35f : 1f);
+            GameObject.FindWithTag("Wheel").GetComponent<Animator>().SetFloat("speed", HasWater ? 1.35f : 1f);
         }
     }
 }

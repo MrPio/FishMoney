@@ -144,7 +144,7 @@ namespace Prefabs
             // Bomb input
             if (InputManager.Instance.GetBombDown())
             {
-                if (_gm.Bombs > 0 && Time.time - _lastBombThrown > 1 &&
+                if (_gm.Bombs > 0 && Time.time - _lastBombThrown > 1.75 &&
                     (Time.time - _retreatStart) / (LaunchDuration * UpFactor * _actualReach / Reach) < 0.9)
                 {
                     _lastBombThrown = Time.time;
@@ -180,6 +180,7 @@ namespace Prefabs
         {
             if (_state is HookState.Launching && other.transform.parent.gameObject.CompareTag("Item"))
             {
+                // Done launching
                 _retreatStart = Time.time;
                 _state = HookState.Retreating;
                 _grabbedItem = other.gameObject.transform.parent.GetComponent<Item>();

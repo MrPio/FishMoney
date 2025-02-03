@@ -50,7 +50,7 @@ MonoBehaviour:
   itemType: 7
   explosion: {fileID: 1060015339853634, guid: cd3fce5c6ea5f804eb28d67d9fac28d8, type: 3}
   explodedMesh: {fileID: 7310173533395450876}
-  explosionRange: 3.75
+  explosionRange: 4
 --- !u!1001 &620674312113455058
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -185,8 +185,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.48797172, y: 0.35433152, z: 0.3762217}
-  m_Center: {x: 0.0039550555, y: -0.007345038, z: -0.004100325}
+  m_Size: {x: 0.5057635, y: 0.35433143, z: 0.3762217}
+  m_Center: {x: 0.0025037497, y: -0.007345029, z: -0.0041003195}
 --- !u!95 &1824066934225627394
 Animator:
   serializedVersion: 7

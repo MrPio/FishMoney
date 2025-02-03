@@ -80,7 +80,7 @@ namespace Prefabs
             foreach (var item in GameObject.FindGameObjectsWithTag("Item")
                          .Where(it => !it.IsDestroyed() && it != gameObject))
                 if (Vector3.Distance(item.transform.position, transform.position) < explosionRange)
-                    Destroy(item, 0.1f);
+                    Destroy(item, 0.05f);
             StartCoroutine(InputManager.Instance.Vibrate());
         }
     }

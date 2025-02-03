@@ -10,7 +10,7 @@ namespace Prefabs
         public void Explode()
         {
             Instantiate(explosion, transform.position, Quaternion.identity);
-            Destroy(gameObject, 0.5f);
+            Destroy(gameObject, 0.1f);
             StartCoroutine(InputManager.Instance.Vibrate());
         }
     }

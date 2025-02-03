@@ -934,7 +934,9 @@ MonoBehaviour:
   priceText: {fileID: 1437021249}
   backgroundImage: {fileID: 465456357}
   merchantImage: {fileID: 205271539}
+  merchantTargetMenuImage: {fileID: 398343279}
   dialogBox: {fileID: 1974343432}
+  dialogBoxTargetMenu: {fileID: 678343262}
   shopItems:
   - {fileID: 1942069883}
   - {fileID: 143213916}
@@ -2030,7 +2032,7 @@ GameObject:
   - component: {fileID: 398343280}
   - component: {fileID: 398343279}
   m_Layer: 5
-  m_Name: Marmo
+  m_Name: Merchant
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2075,7 +2077,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: a152be3d65074d04dabba01b68297e3c, type: 3}
+  m_Sprite: {fileID: 21300000, guid: fcd0f759fb309944683140ae9119eaba, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -3712,8 +3714,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 403.4, y: 0}
-  m_SizeDelta: {x: 1285, y: 691.6}
+  m_AnchoredPosition: {x: 645.67914, y: 0}
+  m_SizeDelta: {x: 1527.279, y: 691.6}
   m_Pivot: {x: 1, y: 0.5}
 --- !u!95 &678343258
 Animator:
@@ -5259,7 +5261,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1014161458
 RectTransform:
   m_ObjectHideFlags: 0
@@ -9731,10 +9733,6 @@ PrefabInstance:
     - target: {fileID: 6853573534814581977, guid: 5187863495ecd7c4c85748f72863ca06, type: 3}
       propertyPath: m_Name
       value: Scene
-      objectReference: {fileID: 0}
-    - target: {fileID: 6853573534814581977, guid: 5187863495ecd7c4c85748f72863ca06, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
