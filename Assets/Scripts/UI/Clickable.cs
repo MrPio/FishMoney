@@ -59,8 +59,11 @@ public class Clickable : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
         else if (button is Buttons.ShopMenuNextLevel)
             _gm.LoadLevel(Level.Levels[_gm.Level.Id]);
         else if (button is Buttons.Restart)
+        {
+            InputManager.Reset();
             UnityEngine.SceneManagement.SceneManager.LoadScene(UnityEngine.SceneManagement.SceneManager.GetActiveScene()
                 .buildIndex);
+        }
     }
 
     public void OnPointerDown(PointerEventData eventData)

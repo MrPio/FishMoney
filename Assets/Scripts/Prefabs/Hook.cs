@@ -39,7 +39,7 @@ namespace Prefabs
         [SerializeField] private Transform itemHolder;
         [SerializeField] private AnimationCurve rotationCurve, launchCurve, reachCurve;
         [SerializeField] private Animator hookAnimator, playerAnimator, wheelAnimator;
-        [SerializeField] private AudioClip launchClip, retreatClip, itemPickupClip, freeHookClip;
+        [SerializeField] private AudioClip launchClip, retreatClip, itemPickupClip, freeHookClip, noBomb;
         [SerializeField] private float retreatClipDelay = 1f;
 
         private GameManager _gm;
@@ -79,7 +79,7 @@ namespace Prefabs
                     y: _startRotation.y,
                     z: _startRotation.z
                 );
-                if (Input.GetKey(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.Space))
+                if (InputManager.Instance.GetHookDown())
                 {
                     _launchStart = Time.time;
                     _state = HookState.Launching;
@@ -139,14 +139,21 @@ namespace Prefabs
                             CollectItem();
                     }
                 }
+            }
 
-                // Bomb input
-                if (_gm.Bombs > 0 && Time.time - _lastBombThrown > 1 && Input.GetKeyDown(KeyCode.UpArrow) &&
-                    dt / (LaunchDuration * UpFactor * _actualReach / Reach) < 0.9)
+            // Bomb input
+            if (InputManager.Instance.GetBombDown())
+            {
+                if (_gm.Bombs > 0 && Time.time - _lastBombThrown > 1 &&
+                    (Time.time - _retreatStart) / (LaunchDuration * UpFactor * _actualReach / Reach) < 0.9)
                 {
                     _lastBombThrown = Time.time;
                     playerAnimator.SetTrigger(PlayerThrow);
                     _gm.Bombs -= 1;
+                }
+                else
+                {
+                    _audioSource.PlayOneShot(noBomb);
                 }
             }
         }
@@ -171,7 +178,6 @@ namespace Prefabs
 
         private void OnTriggerEnter(Collider other)
         {
-            print(other.gameObject.name);
             if (_state is HookState.Launching && other.transform.parent.gameObject.CompareTag("Item"))
             {
                 _retreatStart = Time.time;

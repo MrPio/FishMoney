@@ -1,0 +1,10 @@
+# ninja log v5
+41	2289	7602952309289320	GameActivity/CMakeFiles/game.dir/UGAInputKeyEvent.cpp.o	ad65780d67d56964
+9	2316	7602952309408705	GameActivity/CMakeFiles/game.dir/UGAConfiguration.cpp.o	ca4ccaf5d853b015
+24	2332	7602952309775262	GameActivity/CMakeFiles/game.dir/UGAEntry.cpp.o	fbd039ea64ca1fe
+50	2386	7602952310374415	GameActivity/CMakeFiles/game.dir/UGAInputMotionEvent.cpp.o	d9a0055ea81e43c5
+58	2388	7602952310349271	GameActivity/CMakeFiles/game.dir/UGASoftKeyboard.cpp.o	6780c1a312ec8c7d
+16	2527	7602952311766602	GameActivity/CMakeFiles/game.dir/UGADebug.cpp.o	5c3695c45f33fcd8
+34	2830	7602952314798084	GameActivity/CMakeFiles/game.dir/UGAInput.cpp.o	7721335c87c964f4
+1	3191	7602952318363150	GameActivity/CMakeFiles/game.dir/UGAApplication.cpp.o	e1262870fb2bf66c
+3192	3452	7602952320885049	C:/Users/MrPio/Desktop/Ide Projects/UnityProjects/Fish Money 2/Library/Bee/Android/Prj/IL2CPP/Gradle/unityLibrary/build/intermediates/cxx/RelWithDebInfo/5p2n4g1v/obj/arm64-v8a/libgame.so	7177f638241ce5d7

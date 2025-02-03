@@ -404,16 +404,22 @@
       <HintPath>D:\Programmi\Unity\6000.0.35f1\Editor\Data\Managed\UnityEngine\UnityEditor.XRModule.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Collections.LowLevel.ILSupport">
-      <HintPath>C:\Users\MrPio\Desktop\Ide Projects\UnityProjects\Fish Money 2\Library\PackageCache\com.unity.collections@56bff8827a7e\Unity.Collections.LowLevel.ILSupport\Unity.Collections.LowLevel.ILSupport.dll</HintPath>
+      <HintPath>C:\UnityProjects\Fish Money 2\Library\PackageCache\com.unity.collections@56bff8827a7e\Unity.Collections.LowLevel.ILSupport\Unity.Collections.LowLevel.ILSupport.dll</HintPath>
     </Reference>
     <Reference Include="nunit.framework">
-      <HintPath>C:\Users\MrPio\Desktop\Ide Projects\UnityProjects\Fish Money 2\Library\PackageCache\com.unity.ext.nunit@60ef35ffd3cd\net40\unity-custom\nunit.framework.dll</HintPath>
+      <HintPath>C:\UnityProjects\Fish Money 2\Library\PackageCache\com.unity.ext.nunit@60ef35ffd3cd\net40\unity-custom\nunit.framework.dll</HintPath>
     </Reference>
     <Reference Include="Unity.VisualScripting.Antlr3.Runtime">
-      <HintPath>C:\Users\MrPio\Desktop\Ide Projects\UnityProjects\Fish Money 2\Library\PackageCache\com.unity.visualscripting@1b53f46e931b\Runtime\VisualScripting.Flow\Dependencies\NCalc\Unity.VisualScripting.Antlr3.Runtime.dll</HintPath>
+      <HintPath>C:\UnityProjects\Fish Money 2\Library\PackageCache\com.unity.visualscripting@1b53f46e931b\Runtime\VisualScripting.Flow\Dependencies\NCalc\Unity.VisualScripting.Antlr3.Runtime.dll</HintPath>
     </Reference>
     <Reference Include="Mono.Cecil">
-      <HintPath>C:\Users\MrPio\Desktop\Ide Projects\UnityProjects\Fish Money 2\Library\PackageCache\com.unity.nuget.mono-cecil@d6f9955a5d5f\Mono.Cecil.dll</HintPath>
+      <HintPath>C:\UnityProjects\Fish Money 2\Library\PackageCache\com.unity.nuget.mono-cecil@d6f9955a5d5f\Mono.Cecil.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Android.Types">
+      <HintPath>D:\Programmi\Unity\6000.0.35f1\Editor\Data\PlaybackEngines\AndroidPlayer\Unity.Android.Types.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Android.Gradle">
+      <HintPath>D:\Programmi\Unity\6000.0.35f1\Editor\Data\PlaybackEngines\AndroidPlayer\Unity.Android.Gradle.dll</HintPath>
     </Reference>
     <Reference Include="netstandard">
       <HintPath>D:\Programmi\Unity\6000.0.35f1\Editor\Data\NetStandard\ref\2.1.0\netstandard.dll</HintPath>
@@ -782,10 +788,10 @@
       <HintPath>D:\Programmi\Unity\6000.0.35f1\Editor\Data\NetStandard\compat\2.1.0\shims\netfx\System.Xml.Serialization.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor.UI">
-      <HintPath>C:\Users\MrPio\Desktop\Ide Projects\UnityProjects\Fish Money 2\Library\ScriptAssemblies\UnityEditor.UI.dll</HintPath>
+      <HintPath>C:\UnityProjects\Fish Money 2\Library\ScriptAssemblies\UnityEditor.UI.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.UI">
-      <HintPath>C:\Users\MrPio\Desktop\Ide Projects\UnityProjects\Fish Money 2\Library\ScriptAssemblies\UnityEngine.UI.dll</HintPath>
+      <HintPath>C:\UnityProjects\Fish Money 2\Library\ScriptAssemblies\UnityEngine.UI.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

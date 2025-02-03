@@ -1,3 +1,4 @@
+using Managers;
 using UnityEngine;
 
 namespace Prefabs
@@ -10,6 +11,7 @@ namespace Prefabs
         {
             Instantiate(explosion, transform.position, Quaternion.identity);
             Destroy(gameObject, 0.5f);
+            StartCoroutine(InputManager.Instance.Vibrate());
         }
     }
 }

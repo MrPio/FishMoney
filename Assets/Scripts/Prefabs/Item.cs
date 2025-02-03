@@ -81,6 +81,7 @@ namespace Prefabs
                          .Where(it => !it.IsDestroyed() && it != gameObject))
                 if (Vector3.Distance(item.transform.position, transform.position) < explosionRange)
                     Destroy(item, 0.1f);
+            StartCoroutine(InputManager.Instance.Vibrate());
         }
     }
 }

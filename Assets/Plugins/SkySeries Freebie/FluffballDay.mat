@@ -35,7 +35,7 @@ Material:
     m_Floats:
     - <noninit>: 0
     - _Exposure: 1
-    - _Rotation: 266.1232
+    - _Rotation: 320.375
     m_Colors:
     - <noninit>: {r: 0, g: 9.004677e-35, b: 0, a: 9.0046403e-35}
     - _Tint: {r: 0.48631936, g: 0.56918114, b: 0.6064689, a: 0.5}

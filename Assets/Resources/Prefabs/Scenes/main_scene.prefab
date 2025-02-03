@@ -2605,6 +2605,10 @@ PrefabInstance:
       value: 0.021
       objectReference: {fileID: 0}
     - target: {fileID: 3525582860607655581, guid: e4bcfd0680e57404892c8784e3b1c4b8, type: 3}
+      propertyPath: noBomb
+      value: 
+      objectReference: {fileID: 8300000, guid: a2c3b058f1d716a4ea7d1fd9d0e7f4e7, type: 3}
+    - target: {fileID: 3525582860607655581, guid: e4bcfd0680e57404892c8784e3b1c4b8, type: 3}
       propertyPath: upFactor
       value: 0.4
       objectReference: {fileID: 0}

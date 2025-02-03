@@ -23,8 +23,15 @@ namespace Managers
         [SerializeField] private GameObject mainScene;
         [SerializeField] private bool debugMode;
 
-        [SerializeField]
-        private GameObject mainMenu, targetMenu, mainMenuScene, successMenu, gameOverMenu, winMenu, shopMenu, statsUI;
+        [SerializeField] private GameObject mainMenu,
+            targetMenu,
+            mainMenuScene,
+            successMenu,
+            gameOverMenu,
+            winMenu,
+            shopMenu,
+            statsUI,
+            inputHUD;
 
         public int levelDuration = 60;
         private int _bombs = 0, _magnifier = 0;
@@ -96,6 +103,12 @@ namespace Managers
                 Destroy(go);
             Instantiate(mainMenuScene);
             statsUI.SetActive(false);
+            inputHUD.SetActive(false);
+            if (InputManager.IsMobile)
+            {
+                QualitySettings.vSyncCount = 0;
+                Application.targetFrameRate = 60;
+            }
         }
 
         private void FixedUpdate()
@@ -156,6 +169,7 @@ namespace Managers
 
                     Destroy(GameObject.FindWithTag("Scene"));
                     statsUI.SetActive(false);
+                    inputHUD.SetActive(false);
                     Cursor.lockState = CursorLockMode.None;
                     Cursor.visible = true;
                 }
@@ -223,6 +237,7 @@ namespace Managers
                 var levelGo = Resources.Load<GameObject>("Prefabs/Levels/" + Level.Id.ToString("D3"));
                 Instantiate(levelGo, sceneGo.transform);
                 statsUI.SetActive(true);
+                inputHUD.SetActive(InputManager.IsMobile);
                 BombsContainer.SetBombs(_bombs);
                 SetPerks();
                 Cursor.lockState = CursorLockMode.Locked;

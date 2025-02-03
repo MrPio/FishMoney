@@ -53,7 +53,13 @@ public class ShopMenu : MonoBehaviour
         dialogBox.color = merchant.boxColor;
         backgroundImage.sprite = merchant.background;
         foreach (var shopItem in shopItems)
+        {
             shopItem.gameObject.SetActive(level.ShopItems.ContainsKey(shopItem.shopItemType));
+            if (level.ShopItems.ContainsKey(shopItem.shopItemType))
+                shopItem.transform.Find("price").GetComponent<TextMeshProUGUI>().text =
+                    level.ShopItems[shopItem.shopItemType].ToString("N0");
+        }
+
         moneyText.text = $"$ {_gm.Money:N0}";
         SelectItem(null);
     }
@@ -66,15 +72,15 @@ public class ShopMenu : MonoBehaviour
         {
             dialogBoxText.text = merchant.welcomeSentence;
             dialogBoxText.color = dialogColor;
-            priceText.transform.parent.gameObject.SetActive(false);
+            // priceText.transform.parent.gameObject.SetActive(false);
         }
         else
         {
             dialogBoxText.text = Model.ShopItem.ShopItems.First(it => it.Type == shopItemType).Description;
             dialogBoxText.color = itemInfoColor;
             _audioSource.PlayOneShot(itemSelectClip);
-            priceText.transform.parent.gameObject.SetActive(true);
-            priceText.text = $"$ {level.ShopItems[shopItemType!.Value]:N0}";
+            // priceText.transform.parent.gameObject.SetActive(true);
+            // priceText.text = $"$ {level.ShopItems[shopItemType!.Value]:N0}";
         }
     }
 
