@@ -12,6 +12,7 @@ internal enum Buttons
     MainMenuNewGame,
     ShopMenuNextLevel,
     Restart,
+    Quit,
 }
 
 [RequireComponent(typeof(AudioSource))]
@@ -64,6 +65,8 @@ public class Clickable : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
             UnityEngine.SceneManagement.SceneManager.LoadScene(UnityEngine.SceneManagement.SceneManager.GetActiveScene()
                 .buildIndex);
         }
+        else if (button is Buttons.Quit)
+            Application.Quit();
     }
 
     public void OnPointerDown(PointerEventData eventData)
