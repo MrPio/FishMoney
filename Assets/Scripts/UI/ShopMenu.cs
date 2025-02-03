@@ -87,6 +87,12 @@ public class ShopMenu : MonoBehaviour
             _audioSource.PlayOneShot(itemBuyClip);
             _gm.Money -= price;
             moneyText.text = $"$ {_gm.Money:N0}";
+            if (shopItemType is ShopItemType.Bomb) _gm.Bombs++;
+            if (shopItemType is ShopItemType.Clover) _gm.HasClover = true;
+            if (shopItemType is ShopItemType.Magnifier) _gm.Magnifier = 3;
+            if (shopItemType is ShopItemType.Rotation) _gm.HasRotation = true;
+            if (shopItemType is ShopItemType.Water) _gm.HasWater = true;
+            if (shopItemType is ShopItemType.CreditCard) _gm.HasCreditCard = true;
             SelectItem(null);
         }
         else

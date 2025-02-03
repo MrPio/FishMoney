@@ -10,7 +10,8 @@ internal enum Buttons
 {
     None,
     MainMenuNewGame,
-    ShopMenuNextLevel
+    ShopMenuNextLevel,
+    Restart,
 }
 
 [RequireComponent(typeof(AudioSource))]
@@ -54,13 +55,12 @@ public class Clickable : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
         _text.color = Color.white;
 
         if (button is Buttons.MainMenuNewGame)
-        {
             _gm.LoadLevel(Level.Levels[0]);
-        }
         else if (button is Buttons.ShopMenuNextLevel)
-        {
             _gm.LoadLevel(Level.Levels[_gm.Level.Id]);
-        }
+        else if (button is Buttons.Restart)
+            UnityEngine.SceneManagement.SceneManager.LoadScene(UnityEngine.SceneManagement.SceneManager.GetActiveScene()
+                .buildIndex);
     }
 
     public void OnPointerDown(PointerEventData eventData)

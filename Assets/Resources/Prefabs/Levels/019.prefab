@@ -58,7 +58,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   skybox: {fileID: 2100000, guid: d9dca9ae1786c394f9e79c637aa9a7bf, type: 2}
-  id: 16
+  id: 19
 --- !u!1001 &699538473604561979
 PrefabInstance:
   m_ObjectHideFlags: 0

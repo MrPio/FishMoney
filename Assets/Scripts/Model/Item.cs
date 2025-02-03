@@ -29,11 +29,11 @@ namespace Model
             new(ItemType.RockL, 22.5f, 100, "Audio/Items/rock"),
             new(ItemType.Sack, 7f, null, "Audio/Items/sack"),
             new(ItemType.Treasure, 18f, null, "Audio/Items/treasure"),
-            new(ItemType.Explosive, 5f, 10, "Audio/Items/explosive"),
-            new(ItemType.Diamond, 3.5f, 1000, "Audio/Items/diamond"),
-            new(ItemType.Bird, 2.5f, 10, "Audio/Items/bird"),
-            new(ItemType.BirdDiamond, 4f, 1000, "Audio/Items/bird"),
-            new(ItemType.Bomb, 3f, null, "Audio/Items/coin"),
+            new(ItemType.Explosive, 7f, 10, "Audio/Items/explosive"),
+            new(ItemType.Diamond, 5.5f, 1000, "Audio/Items/diamond"),
+            new(ItemType.Bird, 4.5f, 10, "Audio/Items/bird"),
+            new(ItemType.BirdDiamond, 6f, 1000, "Audio/Items/bird"),
+            new(ItemType.Bomb, 8f, null, "Audio/Items/bomb"),
         };
 
         public readonly float Weight;

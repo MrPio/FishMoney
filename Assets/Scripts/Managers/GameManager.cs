@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Model;
 using Prefabs;
 using TMPro;
@@ -15,11 +16,15 @@ namespace Managers
     public class GameManager : MonoBehaviour
     {
         [SerializeField] private TextMeshProUGUI moneyText, targetText, levelText, timeText;
-        [SerializeField] private AudioClip timeUpClip, successClip, levelFinish, gameOverClip, mainMenuClip, slideClip;
-        [SerializeField] private GameObject mainScene;
 
         [SerializeField]
-        private GameObject mainMenu, targetMenu, mainMenuScene, successMenu, gameOverMenu, shopMenu, statsUI;
+        private AudioClip timeUpClip, successClip, levelFinish, gameOverClip, mainMenuClip, slideClip, winClip;
+
+        [SerializeField] private GameObject mainScene;
+        [SerializeField] private bool debugMode;
+
+        [SerializeField]
+        private GameObject mainMenu, targetMenu, mainMenuScene, successMenu, gameOverMenu, winMenu, shopMenu, statsUI;
 
         public int levelDuration = 60;
         private int _bombs = 0, _magnifier = 0;
@@ -74,12 +79,16 @@ namespace Managers
             _lastEarnText = GameObject.FindWithTag("LastEarn").GetComponent<TextMeshProUGUI>();
             _lastEarnAnimator = GameObject.FindWithTag("LastEarn").GetComponent<Animator>();
             _audioSource = GetComponent<AudioSource>();
-            foreach (var go in GameObject.FindGameObjectsWithTag("Scene"))
-                Destroy(go);
+            if (!debugMode)
+            {
+                foreach (var go in GameObject.FindGameObjectsWithTag("Scene"))
+                    Destroy(go);
+            }
         }
 
         private void Start()
         {
+            if (debugMode) return;
             _audioSource.clip = mainMenuClip;
             _audioSource.Play();
             mainMenu.SetActive(true);
@@ -115,17 +124,26 @@ namespace Managers
                     // Success
                     if (Money >= Level.Target)
                     {
-                        successMenu.SetActive(true);
-                        _audioSource.PlayOneShot(levelFinish);
-                        StartCoroutine(ShowShop());
-
-                        IEnumerator ShowShop()
+                        if (Level.Id >= Level.Levels.Length)
                         {
-                            yield return new WaitForSeconds(4);
-                            successMenu.SetActive(false);
-                            shopMenu.SetActive(true);
-                            _audioSource.clip = successClip;
+                            winMenu.SetActive(true);
+                            _audioSource.clip = winClip;
                             _audioSource.Play();
+                        }
+                        else
+                        {
+                            successMenu.SetActive(true);
+                            _audioSource.PlayOneShot(levelFinish);
+                            StartCoroutine(ShowShop());
+
+                            IEnumerator ShowShop()
+                            {
+                                yield return new WaitForSeconds(4);
+                                successMenu.SetActive(false);
+                                shopMenu.SetActive(true);
+                                _audioSource.clip = successClip;
+                                _audioSource.Play();
+                            }
                         }
                     }
                     // Game Over
@@ -172,9 +190,11 @@ namespace Managers
                 _lastEarnText.text = $"+${value:N0}";
                 _lastEarnAnimator.SetTrigger(Set);
             }
+            else if (item.Type is ItemType.Bomb)
+                Bombs++;
 
             print($"Collected {item.Type}!");
-            return value > 0;
+            return value > 0 && item.Type is not ItemType.Bomb;
         }
 
         public void LoadLevel(Level level)
@@ -192,7 +212,7 @@ namespace Managers
 
             IEnumerator StartLevel()
             {
-                yield return new WaitForSeconds(1); //TODO 5
+                yield return new WaitForSeconds(4);
                 targetMenu.SetActive(false);
                 levelText.text = Level.Id.ToString();
                 targetText.text = "$ " + Level.Target.ToString("N0");

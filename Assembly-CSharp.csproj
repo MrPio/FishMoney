@@ -57,6 +57,7 @@
     <Compile Include="Assets\Scripts\Model\Level.cs" />
     <Compile Include="Assets\Scripts\UI\TargetMenu.cs" />
     <Compile Include="Assets\Scripts\UI\Clickable.cs" />
+    <Compile Include="Assets\GameOverMenu.cs" />
     <Compile Include="Assets\Scripts\Managers\JsonSerializer.cs" />
     <Compile Include="Assets\Scripts\Managers\SceneManager.cs" />
     <Compile Include="Assets\Scripts\Prefabs\Hook.cs" />

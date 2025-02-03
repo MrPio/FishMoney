@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5872022908678195900}
   m_Layer: 0
   m_Name: Bird
-  m_TagString: Untagged
+  m_TagString: Item
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -206,7 +206,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.6633416, y: 0.30009001, z: 0.756488}
+  m_Size: {x: 0.6633416, y: 0.35, z: 0.98}
   m_Center: {x: 0.063430645, y: 0.059261512, z: -0.0049312683}
 --- !u!95 &4656556956250876450
 Animator:

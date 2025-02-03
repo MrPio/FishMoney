@@ -1,5 +1,6 @@
 using System.Collections;
 using Managers;
+using Model;
 using UnityEngine;
 
 namespace Prefabs
@@ -68,7 +69,6 @@ namespace Prefabs
 
         private void Update()
         {
-            print(_state);
             // Hook is rotating
             if (_state is HookState.Idle)
             {
@@ -79,7 +79,7 @@ namespace Prefabs
                     y: _startRotation.y,
                     z: _startRotation.z
                 );
-                if (Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.Space))
+                if (Input.GetKey(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.Space))
                 {
                     _launchStart = Time.time;
                     _state = HookState.Launching;
@@ -171,11 +171,13 @@ namespace Prefabs
 
         private void OnTriggerEnter(Collider other)
         {
+            print(other.gameObject.name);
             if (_state is HookState.Launching && other.transform.parent.gameObject.CompareTag("Item"))
             {
                 _retreatStart = Time.time;
                 _state = HookState.Retreating;
                 _grabbedItem = other.gameObject.transform.parent.GetComponent<Item>();
+                _grabbedItem.StopFlying();
                 _grabbedItem.transform.SetParent(itemHolder);
                 _grabbedItem.transform.localPosition = Vector3.zero;
                 _grabbedItem.transform.Rotate(Vector3.back, transform.localRotation.eulerAngles.x);
@@ -184,6 +186,8 @@ namespace Prefabs
                 hookAnimator.SetTrigger(HookGrab);
                 StartCoroutine(PlayRetreatClip());
                 _audioSource.PlayOneShot(Resources.Load<AudioClip>(_grabbedItem.ItemModel.Clip));
+                if (_grabbedItem.ItemModel.Type is ItemType.Explosive)
+                    _grabbedItem.Explode();
             }
         }
 
