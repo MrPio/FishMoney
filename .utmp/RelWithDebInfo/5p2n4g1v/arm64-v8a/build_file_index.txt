@@ -1,2 +1,0 @@
-C:\Users\MrPio\Desktop\Ide Projects\UnityProjects\Fish Money 2\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\src\main\cpp\CMakeLists.txt
-C:\Users\MrPio\Desktop\Ide Projects\UnityProjects\Fish Money 2\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\src\main\cpp\GameActivity\CMakeLists.txt

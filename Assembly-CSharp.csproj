@@ -46,6 +46,7 @@
     <Analyzer Include="D:\Programmi\Unity\6000.0.35f1\Editor\Data\Tools\Unity.SourceGenerators\Unity.UIToolkit.SourceGenerator.dll" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\UI\GameOverMenu.cs" />
     <Compile Include="Assets\Scripts\Prefabs\BombsContainer.cs" />
     <Compile Include="Assets\Scripts\ExtensionsFunctions\BoolExtensions.cs" />
     <Compile Include="Assets\Scripts\Managers\GameManager.cs" />
@@ -53,14 +54,12 @@
     <Compile Include="Assets\Scripts\Prefabs\Player.cs" />
     <Compile Include="Assets\Scripts\Model\Item.cs" />
     <Compile Include="Assets\Scripts\Partials\Maskable.cs" />
-    <Compile Include="Assets\Destroyable.cs" />
-    <Compile Include="Assets\InputButton.cs" />
+    <Compile Include="Assets\Scripts\UI\InputButton.cs" />
     <Compile Include="Assets\Scripts\Utilities\LevelsDumper.cs" />
     <Compile Include="Assets\Scripts\Model\Level.cs" />
     <Compile Include="Assets\Scripts\Utilities\JsonSerializer.cs" />
     <Compile Include="Assets\Scripts\UI\TargetMenu.cs" />
     <Compile Include="Assets\Scripts\UI\Clickable.cs" />
-    <Compile Include="Assets\GameOverMenu.cs" />
     <Compile Include="Assets\Scripts\Managers\SceneManager.cs" />
     <Compile Include="Assets\Scripts\Prefabs\Hook.cs" />
     <Compile Include="Assets\Scripts\Prefabs\ShopItem.cs" />
@@ -69,8 +68,6 @@
     <Compile Include="Assets\Scripts\Prefabs\Item.cs" />
     <Compile Include="Assets\Scripts\Prefabs\Bomb.cs" />
     <Compile Include="Assets\Scripts\UI\ShopMenu.cs" />
-    <None Include="Assets\Resources\PerformanceTestRunSettings.json" />
-    <None Include="Assets\Resources\PerformanceTestRunInfo.json" />
     <None Include="Assets\Resources\Materials\Shaders\Mask.shader" />
     <Reference Include="UnityEngine">
       <HintPath>D:\Programmi\Unity\6000.0.35f1\Editor\Data\Managed\UnityEngine\UnityEngine.dll</HintPath>

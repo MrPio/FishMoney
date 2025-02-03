@@ -1,5 +1,0 @@
-C:/Users/MrPio/Desktop/Ide Projects/UnityProjects/Fish Money 2/.utmp/RelWithDebInfo/5p2n4g1v/arm64-v8a/CMakeFiles/edit_cache.dir
-C:/Users/MrPio/Desktop/Ide Projects/UnityProjects/Fish Money 2/.utmp/RelWithDebInfo/5p2n4g1v/arm64-v8a/CMakeFiles/rebuild_cache.dir
-C:/Users/MrPio/Desktop/Ide Projects/UnityProjects/Fish Money 2/.utmp/RelWithDebInfo/5p2n4g1v/arm64-v8a/GameActivity/CMakeFiles/game.dir
-C:/Users/MrPio/Desktop/Ide Projects/UnityProjects/Fish Money 2/.utmp/RelWithDebInfo/5p2n4g1v/arm64-v8a/GameActivity/CMakeFiles/edit_cache.dir
-C:/Users/MrPio/Desktop/Ide Projects/UnityProjects/Fish Money 2/.utmp/RelWithDebInfo/5p2n4g1v/arm64-v8a/GameActivity/CMakeFiles/rebuild_cache.dir

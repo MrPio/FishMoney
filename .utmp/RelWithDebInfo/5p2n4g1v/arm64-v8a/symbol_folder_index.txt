@@ -1,1 +1,0 @@
-C:\Users\MrPio\Desktop\Ide Projects\UnityProjects\Fish Money 2\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\build\intermediates\cxx\RelWithDebInfo\5p2n4g1v\obj\arm64-v8a
