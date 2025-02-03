@@ -50,8 +50,8 @@ namespace Prefabs
 
         private float Reach => reach * reachCurve.Evaluate(_rotX / maxRotation);
         private float UpFactor => upFactor * (_grabbedItem is null ? 1f : _grabbedItem.ItemModel.Weight);
-        private float RotationSpeed => rotationSpeed * (_gm.HasRotation ? 1.5f : 0);
-        private float LaunchDuration => launchDuration * (_gm.HasWater ? 0.666f : 0);
+        private float RotationSpeed => rotationSpeed * (_gm.HasRotation ? 1.4f : 1);
+        private float LaunchDuration => launchDuration * (_gm.HasWater ? 0.75f : 1);
 
         private void Awake()
         {
@@ -68,6 +68,7 @@ namespace Prefabs
 
         private void Update()
         {
+            print(_state);
             // Hook is rotating
             if (_state is HookState.Idle)
             {

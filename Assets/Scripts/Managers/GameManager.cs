@@ -17,14 +17,13 @@ namespace Managers
         [SerializeField] private TextMeshProUGUI moneyText, targetText, levelText, timeText;
         [SerializeField] private AudioClip timeUpClip, successClip, levelFinish, gameOverClip, mainMenuClip, slideClip;
         [SerializeField] private GameObject mainScene;
-        [SerializeField] private GameObject waterPerk, rotationPerk, cloverPerk, creditCardPerk, magnifierPerk;
 
         [SerializeField]
         private GameObject mainMenu, targetMenu, mainMenuScene, successMenu, gameOverMenu, shopMenu, statsUI;
 
         public int levelDuration = 60;
         private int _bombs = 0, _magnifier = 0;
-        [NonSerialized] public bool HasWater, HasRotation, HasClover, HasCreditCard;
+        public bool HasWater, HasRotation, HasClover, HasCreditCard;
         private int _money;
         public Level Level;
         private float _gameStart, _lastTimeUp;
@@ -122,7 +121,7 @@ namespace Managers
 
                         IEnumerator ShowShop()
                         {
-                            yield return new WaitForSeconds(5);
+                            yield return new WaitForSeconds(4);
                             successMenu.SetActive(false);
                             shopMenu.SetActive(true);
                             _audioSource.clip = successClip;
@@ -138,7 +137,7 @@ namespace Managers
                     }
 
                     Destroy(GameObject.FindWithTag("Scene"));
-                    statsUI.SetActive(true);
+                    statsUI.SetActive(false);
                     Cursor.lockState = CursorLockMode.None;
                     Cursor.visible = true;
                 }
@@ -213,11 +212,12 @@ namespace Managers
 
         private void SetPerks()
         {
-            waterPerk.SetActive(HasWater);
-            rotationPerk.SetActive(HasRotation);
-            cloverPerk.SetActive(HasClover);
-            creditCardPerk.SetActive(HasCreditCard);
-            magnifierPerk.SetActive(Magnifier > 0);
+            var perksContainer = GameObject.FindWithTag("PerksContainer").transform;
+            perksContainer.Find("water_container").gameObject.SetActive(HasWater);
+            perksContainer.Find("rotation_container").gameObject.SetActive(HasRotation);
+            perksContainer.Find("clover_container").gameObject.SetActive(HasClover);
+            perksContainer.Find("credit_card_container").gameObject.SetActive(HasCreditCard);
+            perksContainer.Find("magnifier_container").gameObject.SetActive(Magnifier > 0);
         }
     }
 }

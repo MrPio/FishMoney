@@ -29,8 +29,10 @@ namespace Prefabs
 
         public void OnPointerClick(PointerEventData eventData)
         {
-            shopMenu.BuyItem(shopItemType);
-            gameObject.SetActive(false);
+            if (shopMenu.BuyItem(shopItemType))
+            {
+                gameObject.SetActive(false);
+            }
         }
     }
 }

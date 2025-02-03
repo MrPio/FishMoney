@@ -15,18 +15,20 @@ namespace Prefabs
         private GameManager _gm;
         private Animator _animator;
         private float _acc, _delay;
+        private bool _hasAnimator = false;
         public Model.Item ItemModel => Model.Item.Items.First(it => it.Type == itemType);
 
         private void Awake()
         {
             _animator = GetComponentInChildren<Animator>();
+            _hasAnimator = _animator != null;
             _gm = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
-            _delay = Random.Range(idleAnimationFrequencyRange.x, idleAnimationFrequencyRange.y)/2;
+            _delay = Random.Range(idleAnimationFrequencyRange.x, idleAnimationFrequencyRange.y) / 2;
         }
 
         private void FixedUpdate()
         {
-            if (_animator is null) return;
+            if (!_hasAnimator) return;
             _acc += Time.deltaTime;
             if (_acc > _delay)
             {

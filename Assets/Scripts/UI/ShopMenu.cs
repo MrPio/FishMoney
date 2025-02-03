@@ -27,9 +27,7 @@ public class ShopMenu : MonoBehaviour
     [SerializeField] private Image backgroundImage, merchantImage, dialogBox;
     [SerializeField] private List<ShopItem> shopItems;
     [SerializeField] private AudioClip itemSelectClip;
-
-    [FormerlySerializedAs("itemBuy")] [SerializeField]
-    private AudioClip itemBuyClip;
+    [SerializeField] private AudioClip itemBuyClip, noBuyClip;
 
     [SerializeField] private Color dialogColor = Color.white, itemInfoColor;
     private GameManager _gm;
@@ -80,7 +78,7 @@ public class ShopMenu : MonoBehaviour
         }
     }
 
-    public void BuyItem(ShopItemType shopItemType)
+    public bool BuyItem(ShopItemType shopItemType)
     {
         var level = _gm.Level ?? Level.Levels[0];
         var price = level.ShopItems[shopItemType];
@@ -89,8 +87,11 @@ public class ShopMenu : MonoBehaviour
             _audioSource.PlayOneShot(itemBuyClip);
             _gm.Money -= price;
             moneyText.text = $"$ {_gm.Money:N0}";
+            SelectItem(null);
         }
+        else
+            _audioSource.PlayOneShot(noBuyClip);
 
-        SelectItem(null);
+        return _gm.Money >= price;
     }
 }

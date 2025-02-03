@@ -15,6 +15,7 @@ namespace Model
         Diamond,
         Bird,
         BirdDiamond,
+        Bomb,
     }
 
     public class Item
@@ -32,6 +33,7 @@ namespace Model
             new(ItemType.Diamond, 3.5f, 1000, "Audio/Items/diamond"),
             new(ItemType.Bird, 2.5f, 10, "Audio/Items/bird"),
             new(ItemType.BirdDiamond, 4f, 1000, "Audio/Items/bird"),
+            new(ItemType.Bomb, 3f, null, "Audio/Items/coin"),
         };
 
         public readonly float Weight;
@@ -55,7 +57,7 @@ namespace Model
                 return Type switch
                 {
                     ItemType.Sack => random.Next(2) == 0 ? 0 : random.Next(100, 600),
-                    ItemType.Treasure => random.Next(2) == 0 ? 0 : random.Next(500, 1500),
+                    ItemType.Treasure => random.Next(2) == 0 ? 0 : random.Next(500, 1300),
                     _ => _value ?? 0
                 };
             }

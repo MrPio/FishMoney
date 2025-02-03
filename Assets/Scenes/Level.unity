@@ -26,7 +26,7 @@ RenderSettings:
   m_AmbientIntensity: 1.16
   m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
-  m_SkyboxMaterial: {fileID: 2100000, guid: 559a25dc7541c8144aff78a3fde698a4, type: 2}
+  m_SkyboxMaterial: {fileID: 2100000, guid: 20d4f77b9022eab48b4d94599ed4bf82, type: 2}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -612,6 +612,7 @@ MonoBehaviour:
   - {fileID: 1816675358}
   itemSelectClip: {fileID: 8300000, guid: 2f2831b1f547b61458ad69265bc5c162, type: 3}
   itemBuyClip: {fileID: 8300000, guid: 52b851343a082dd49bd072c32e3793a8, type: 3}
+  noBuyClip: {fileID: 8300000, guid: 56f5bb97156f57f41a3839f4b72d47bb, type: 3}
   dialogColor: {r: 1, g: 1, b: 1, a: 1}
   itemInfoColor: {r: 0.9073375, g: 1, b: 0.3050313, a: 1}
 --- !u!82 &127728273
@@ -1804,7 +1805,7 @@ GameObject:
   - component: {fileID: 458184486}
   - component: {fileID: 458184485}
   m_Layer: 5
-  m_Name: Background (2)
+  m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1849,7 +1850,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 5a45972503ceb254e83e88739357701e, type: 3}
+  m_Sprite: {fileID: 21300000, guid: b6f941f73ebb5444f89961a5809a607d, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -2962,6 +2963,7 @@ GameObject:
   m_Component:
   - component: {fileID: 831689102}
   - component: {fileID: 831689101}
+  - component: {fileID: 831689103}
   m_Layer: 0
   m_Name: SceneManager
   m_TagString: Untagged
@@ -2997,6 +2999,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &831689103
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 831689100}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b63499036fb744aabd301c10890cecb5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  levelsContainer: {fileID: 0}
 --- !u!1 &832575517
 GameObject:
   m_ObjectHideFlags: 0
@@ -3985,11 +4000,6 @@ MonoBehaviour:
   mainMenuClip: {fileID: 8300000, guid: 14bed604ab35b1745a08d96c12d44135, type: 3}
   slideClip: {fileID: 8300000, guid: 39d8c1eb9dcff9c4b92a66217c9c80cc, type: 3}
   mainScene: {fileID: 6853573534814581977, guid: 5187863495ecd7c4c85748f72863ca06, type: 3}
-  waterPerk: {fileID: 0}
-  rotationPerk: {fileID: 0}
-  cloverPerk: {fileID: 0}
-  creditCardPerk: {fileID: 0}
-  magnifierPerk: {fileID: 0}
   mainMenu: {fileID: 1331401904}
   targetMenu: {fileID: 1176573292}
   mainMenuScene: {fileID: 3878621661655114748, guid: b230f8766a162e3488707b8791209f85, type: 3}
@@ -3997,7 +4007,11 @@ MonoBehaviour:
   gameOverMenu: {fileID: 1997351042}
   shopMenu: {fileID: 127728268}
   statsUI: {fileID: 242080014}
-  levelDuration: 60
+  levelDuration: 6
+  HasWater: 1
+  HasRotation: 1
+  HasClover: 0
+  HasCreditCard: 1
 --- !u!4 &1344837806
 Transform:
   m_ObjectHideFlags: 0
@@ -4552,7 +4566,6 @@ GameObject:
   - component: {fileID: 1457824548}
   - component: {fileID: 1457824547}
   - component: {fileID: 1457824546}
-  - component: {fileID: 1457824545}
   m_Layer: 0
   m_Name: Reference
   m_TagString: Untagged
@@ -4560,28 +4573,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 0
---- !u!64 &1457824545
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1457824544}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!23 &1457824546
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -4605,7 +4596,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 6666f228f939e7e4dafec132c020211d, type: 2}
+  - {fileID: 2100000, guid: 101f4f7070601944696f4493a53a4961, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -5708,7 +5699,7 @@ MonoBehaviour:
   clickClip: {fileID: 8300000, guid: 32201ae731c047b409e42e17b95b4d33, type: 3}
   textHoverColor: {r: 1, g: 0.97802776, b: 0.34905648, a: 1}
   textDownColor: {r: 0.40251565, g: 0.40251565, b: 0.40251565, a: 1}
-  button: 0
+  button: 2
 --- !u!82 &1955191923
 AudioSource:
   m_ObjectHideFlags: 0
@@ -6505,10 +6496,6 @@ PrefabInstance:
     - target: {fileID: 3647878281640788113, guid: 5187863495ecd7c4c85748f72863ca06, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6234093744460116855, guid: 5187863495ecd7c4c85748f72863ca06, type: 3}
-      propertyPath: m_ConstrainProportionsScale
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6853573534814581977, guid: 5187863495ecd7c4c85748f72863ca06, type: 3}
       propertyPath: m_Name
