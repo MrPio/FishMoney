@@ -5,6 +5,8 @@ Collect money to complete all the levels!
 
 ## [⬇️ Download it here!](https://github.com/MrPio/FishMoney/releases/tag/Stable)
 
+### 🎮 Play with your Joystick!
+
 # Gameplay
 <p align="center">
   <a href="https://www.youtube.com/watch?v=ijDLr3MFz3w">
