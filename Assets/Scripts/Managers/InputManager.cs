@@ -24,9 +24,10 @@ namespace Managers
         public static bool IsMobile =>
             Application.platform is RuntimePlatform.Android or RuntimePlatform.IPhonePlayer;
 
+
         private bool? _hasJoystick;
 
-        public bool IsHookDown, IsBombDown;
+        public bool IsHookDown, IsBombDown, IsPauseDown;
 
         public bool HasJoystick() => _hasJoystick ??= Gamepad.current is not null;
 
@@ -43,6 +44,13 @@ namespace Managers
                 : HasJoystick()
                     ? Input.GetKeyDown(KeyCode.Joystick1Button1)
                     : Input.GetKeyDown(KeyCode.UpArrow);
+
+        public bool GetPauseDown() =>
+            IsMobile
+                ? IsPauseDown.GetAsTrigger()
+                : HasJoystick()
+                    ? Input.GetKeyDown(KeyCode.Joystick1Button6)
+                    : Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.P);
 
 
         public IEnumerator Vibrate(float duration = 0.35f)

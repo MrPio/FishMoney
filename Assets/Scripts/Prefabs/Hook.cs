@@ -72,7 +72,8 @@ namespace Prefabs
             // Hook is rotating
             if (_state is HookState.Idle)
             {
-                _acc += Time.deltaTime;
+                if (!_gm.IsPaused)
+                    _acc += Time.deltaTime;
                 _rotX = rotationCurve.Evaluate(_acc * RotationSpeed) * maxRotation;
                 transform.localRotation = Quaternion.Euler(
                     x: _rotX,
@@ -81,7 +82,7 @@ namespace Prefabs
                 );
                 if (InputManager.Instance.GetHookDown())
                 {
-                    _launchStart = Time.time;
+                    _launchStart = _gm.elapsedTime;
                     _state = HookState.Launching;
                     playerAnimator.SetTrigger(PlayerLaunch);
                     wheelAnimator.SetTrigger(WheelLaunch);
@@ -93,7 +94,7 @@ namespace Prefabs
             // Launching
             if (_state is HookState.Launching)
             {
-                var dt = Time.time - _launchStart;
+                var dt = _gm.elapsedTime - _launchStart;
                 _actualReach = launchCurve.Evaluate(dt / LaunchDuration) * Reach;
                 transform.localPosition =
                     _startPosition + Quaternion.Euler(0, 0, -90) * transform.forward * _actualReach;
@@ -101,7 +102,7 @@ namespace Prefabs
                 // Done launching
                 if (dt > LaunchDuration)
                 {
-                    _retreatStart = Time.time;
+                    _retreatStart = _gm.elapsedTime;
                     _state = HookState.Retreating;
                     playerAnimator.SetTrigger(PlayerTurn);
                     wheelAnimator.SetTrigger(WheelTurn);
@@ -113,7 +114,7 @@ namespace Prefabs
             // Retreating
             else if (_state is HookState.Retreating)
             {
-                var dt = Time.time - _retreatStart;
+                var dt = _gm.elapsedTime - _retreatStart;
                 var dx = (1 - dt /
                     (LaunchDuration * UpFactor * _actualReach / Reach)) * _actualReach;
                 transform.localPosition = _startPosition + Quaternion.Euler(0, 0, -90) * transform.forward * dx;
@@ -145,7 +146,7 @@ namespace Prefabs
             if (InputManager.Instance.GetBombDown())
             {
                 if (_gm.Bombs > 0 && Time.time - _lastBombThrown > 1.75 &&
-                    (Time.time - _retreatStart) / (LaunchDuration * UpFactor * _actualReach / Reach) < 0.9)
+                    (_gm.elapsedTime - _retreatStart) / (LaunchDuration * UpFactor * _actualReach / Reach) < 0.9)
                 {
                     _lastBombThrown = Time.time;
                     playerAnimator.SetTrigger(PlayerThrow);
@@ -181,7 +182,7 @@ namespace Prefabs
             if (_state is HookState.Launching && other.transform.parent.gameObject.CompareTag("Item"))
             {
                 // Done launching
-                _retreatStart = Time.time;
+                _retreatStart = _gm.elapsedTime;
                 _state = HookState.Retreating;
                 _grabbedItem = other.gameObject.transform.parent.GetComponent<Item>();
                 _grabbedItem.StopFlying();
@@ -202,11 +203,11 @@ namespace Prefabs
         {
             if (_state is HookState.Retreating)
             {
-                var dt = Time.time - _retreatStart;
+                var dt = _gm.elapsedTime - _retreatStart;
                 var percent = dt / (LaunchDuration * UpFactor * _actualReach / Reach);
                 Destroy(_grabbedItem.gameObject);
                 _grabbedItem = null;
-                _retreatStart = Time.time - percent * LaunchDuration * UpFactor * _actualReach / Reach;
+                _retreatStart = _gm.elapsedTime - percent * LaunchDuration * UpFactor * _actualReach / Reach;
                 _audioSource.PlayOneShot(freeHookClip);
             }
         }

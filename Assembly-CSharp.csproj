@@ -47,6 +47,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\UI\GameOverMenu.cs" />
+    <Compile Include="Assets\PauseMenu.cs" />
     <Compile Include="Assets\Scripts\Prefabs\BombsContainer.cs" />
     <Compile Include="Assets\Scripts\ExtensionsFunctions\BoolExtensions.cs" />
     <Compile Include="Assets\Scripts\Managers\GameManager.cs" />
@@ -68,9 +69,7 @@
     <Compile Include="Assets\Scripts\Prefabs\Item.cs" />
     <Compile Include="Assets\Scripts\Prefabs\Bomb.cs" />
     <Compile Include="Assets\Scripts\UI\ShopMenu.cs" />
-    <None Include="Assets\Resources\PerformanceTestRunSettings.json" />
     <None Include="Assets\Resources\Materials\Shaders\Mask.shader" />
-    <None Include="Assets\Resources\PerformanceTestRunInfo.json" />
     <Reference Include="UnityEngine">
       <HintPath>D:\Programmi\Unity\6000.0.35f1\Editor\Data\Managed\UnityEngine\UnityEngine.dll</HintPath>
     </Reference>

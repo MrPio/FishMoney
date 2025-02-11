@@ -1,4 +1,3 @@
-using System;
 using Managers;
 using Model;
 using TMPro;
@@ -6,72 +5,75 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-internal enum Buttons
+namespace UI
 {
-    None,
-    MainMenuNewGame,
-    ShopMenuNextLevel,
-    Restart,
-    Quit,
-}
-
-[RequireComponent(typeof(AudioSource))]
-public class Clickable : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler,
-    IPointerDownHandler
-{
-    [SerializeField] private Sprite baseSprite, hoverSprite, downSprite;
-    [SerializeField] private AudioClip hoverClip, clickClip;
-    [SerializeField] private Color textHoverColor = Color.white, textDownColor = Color.white;
-    private Image _buttonImage;
-    private AudioSource _audioSource;
-    private TextMeshProUGUI _text;
-    [SerializeField] private Buttons button = Buttons.None;
-    private GameManager _gm;
-
-    private void Awake()
+    internal enum Buttons
     {
-        _gm = GameObject.FindWithTag("GameManager").GetComponent<GameManager>();
-        _buttonImage = GetComponent<Image>();
-        _audioSource = GetComponent<AudioSource>();
-        _text = GetComponentInChildren<TextMeshProUGUI>();
+        None,
+        MainMenuNewGame,
+        ShopMenuNextLevel,
+        Restart,
+        Quit,
     }
 
-    public void OnPointerEnter(PointerEventData eventData)
+    [RequireComponent(typeof(AudioSource))]
+    public class Clickable : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler,
+        IPointerDownHandler
     {
-        _buttonImage.sprite = hoverSprite;
-        _audioSource.PlayOneShot(hoverClip);
-        _text.color = textHoverColor;
-    }
+        [SerializeField] private Sprite baseSprite, hoverSprite, downSprite;
+        [SerializeField] private AudioClip hoverClip, clickClip;
+        [SerializeField] private Color textHoverColor = Color.white, textDownColor = Color.white;
+        private Image _buttonImage;
+        private AudioSource _audioSource;
+        private TextMeshProUGUI _text;
+        [SerializeField] private Buttons button = Buttons.None;
+        private GameManager _gm;
 
-    public void OnPointerExit(PointerEventData eventData)
-    {
-        _buttonImage.sprite = baseSprite;
-        _text.color = Color.white;
-    }
-
-    public void OnPointerClick(PointerEventData eventData)
-    {
-        _buttonImage.sprite = baseSprite;
-        _audioSource.PlayOneShot(clickClip);
-        _text.color = Color.white;
-
-        if (button is Buttons.MainMenuNewGame)
-            _gm.LoadLevel(Level.Levels[0]);
-        else if (button is Buttons.ShopMenuNextLevel)
-            _gm.LoadLevel(Level.Levels[_gm.Level.Id]);
-        else if (button is Buttons.Restart)
+        private void Awake()
         {
-            InputManager.Reset();
-            UnityEngine.SceneManagement.SceneManager.LoadScene(UnityEngine.SceneManagement.SceneManager.GetActiveScene()
-                .buildIndex);
+            _gm = GameObject.FindWithTag("GameManager").GetComponent<GameManager>();
+            _buttonImage = GetComponent<Image>();
+            _audioSource = GetComponent<AudioSource>();
+            _text = GetComponentInChildren<TextMeshProUGUI>();
         }
-        else if (button is Buttons.Quit)
-            Application.Quit();
-    }
 
-    public void OnPointerDown(PointerEventData eventData)
-    {
-        _buttonImage.sprite = downSprite;
-        _text.color = textDownColor;
+        public void OnPointerEnter(PointerEventData eventData)
+        {
+            _buttonImage.sprite = hoverSprite;
+            _audioSource.PlayOneShot(hoverClip);
+            _text.color = textHoverColor;
+        }
+
+        public void OnPointerExit(PointerEventData eventData)
+        {
+            _buttonImage.sprite = baseSprite;
+            _text.color = Color.white;
+        }
+
+        public void OnPointerClick(PointerEventData eventData)
+        {
+            _buttonImage.sprite = baseSprite;
+            _audioSource.PlayOneShot(clickClip);
+            _text.color = Color.white;
+
+            if (button is Buttons.MainMenuNewGame)
+                _gm.LoadLevel(Level.Levels[0]);
+            else if (button is Buttons.ShopMenuNextLevel)
+                _gm.LoadLevel(Level.Levels[_gm.Level.Id]);
+            else if (button is Buttons.Restart)
+            {
+                InputManager.Reset();
+                UnityEngine.SceneManagement.SceneManager.LoadScene(UnityEngine.SceneManagement.SceneManager.GetActiveScene()
+                    .buildIndex);
+            }
+            else if (button is Buttons.Quit)
+                Application.Quit();
+        }
+
+        public void OnPointerDown(PointerEventData eventData)
+        {
+            _buttonImage.sprite = downSprite;
+            _text.color = textDownColor;
+        }
     }
 }

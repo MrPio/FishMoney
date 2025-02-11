@@ -17,8 +17,14 @@ namespace Managers
     {
         [SerializeField] private TextMeshProUGUI moneyText, targetText, levelText, timeText;
 
-        [SerializeField]
-        private AudioClip timeUpClip, successClip, levelFinish, gameOverClip, mainMenuClip, slideClip, winClip;
+        [SerializeField] private AudioClip timeUpClip,
+            successClip,
+            levelFinish,
+            gameOverClip,
+            mainMenuClip,
+            slideClip,
+            menuCloseClip,
+            winClip;
 
         [SerializeField] private GameObject mainScene;
         [SerializeField] private bool debugMode;
@@ -31,13 +37,17 @@ namespace Managers
             winMenu,
             shopMenu,
             statsUI,
-            inputHUD;
+            inputHUD,
+            pauseMenu;
 
         public int levelDuration = 60;
         private int _bombs = 0, _magnifier = 0;
         public bool HasWater, HasRotation, HasClover, HasCreditCard;
         private int _money;
         public Level Level;
+        public float elapsedTime;
+        [NonSerialized] public bool IsPaused;
+
         private float _gameStart, _lastTimeUp;
         private List<Item> _collectedItems = new();
         private static readonly int Set = Animator.StringToHash("set");
@@ -104,6 +114,7 @@ namespace Managers
             Instantiate(mainMenuScene);
             statsUI.SetActive(false);
             inputHUD.SetActive(false);
+            pauseMenu.SetActive(false);
             if (InputManager.IsMobile)
             {
                 QualitySettings.vSyncCount = 0;
@@ -111,11 +122,23 @@ namespace Managers
             }
         }
 
+        private void Update()
+        {
+            // Pause Menu
+            if (_isInLevel && InputManager.Instance.GetPauseDown())
+            {
+                pauseMenu.SetActive(!IsPaused);
+                _audioSource.PlayOneShot(pauseMenu ? menuCloseClip : slideClip);
+                IsPaused = !IsPaused;
+            }
+        }
+
         private void FixedUpdate()
         {
+            if (!IsPaused) elapsedTime += Time.deltaTime;
             if (_isInLevel)
             {
-                var leftTime = levelDuration - (Time.time - _gameStart);
+                var leftTime = levelDuration - (elapsedTime - _gameStart);
                 timeText.text = math.clamp(leftTime, 0, levelDuration).ToString("N0");
                 if (leftTime <= 10 && Time.time - _lastTimeUp >= 1)
                 {
@@ -140,12 +163,14 @@ namespace Managers
                         if (Level.Id >= Level.Levels.Length)
                         {
                             winMenu.SetActive(true);
+                            pauseMenu.SetActive(false);
                             _audioSource.clip = winClip;
                             _audioSource.Play();
                         }
                         else
                         {
                             successMenu.SetActive(true);
+                            pauseMenu.SetActive(false);
                             _audioSource.PlayOneShot(levelFinish);
                             StartCoroutine(ShowShop());
 
@@ -153,6 +178,7 @@ namespace Managers
                             {
                                 yield return new WaitForSeconds(4);
                                 successMenu.SetActive(false);
+                                pauseMenu.SetActive(false);
                                 shopMenu.SetActive(true);
                                 _audioSource.clip = successClip;
                                 _audioSource.Play();
@@ -169,6 +195,7 @@ namespace Managers
 
                     Destroy(GameObject.FindWithTag("Scene"));
                     statsUI.SetActive(false);
+                    pauseMenu.SetActive(false);
                     inputHUD.SetActive(false);
                     Cursor.lockState = CursorLockMode.None;
                     Cursor.visible = true;
@@ -219,6 +246,7 @@ namespace Managers
             mainMenu.SetActive(false);
             shopMenu.SetActive(false);
             targetMenu.SetActive(true);
+            pauseMenu.SetActive(false);
             foreach (var go in GameObject.FindGameObjectsWithTag("Scene"))
                 Destroy(go);
             var levelGo = Resources.Load<GameObject>("Prefabs/Levels/" + Level.Id.ToString("D3"));
@@ -233,7 +261,7 @@ namespace Managers
                 levelText.text = Level.Id.ToString();
                 targetText.text = "$ " + Level.Target.ToString("N0");
                 moneyText.text = "$ " + _money.ToString("N0");
-                _gameStart = Time.time;
+                _gameStart = elapsedTime;
                 _isInLevel = true;
                 var sceneGo = Instantiate(mainScene);
                 Instantiate(levelGo, sceneGo.transform);
