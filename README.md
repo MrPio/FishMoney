@@ -4,6 +4,9 @@ Collect money to complete all the levels!
 *All the models were made by me in Blender 4.3*
 
 ## [⬇️ Download it here!](https://github.com/MrPio/FishMoney/releases/tag/Stable)
+## [🌍 Play it on the web!](https://play.unity.com/en/games/98842023-8746-42f8-8bf1-205171d73e2c/fish-money)
+
+### 🎮 Play with your Joystick!
 
 # Gameplay
 <p align="center">
