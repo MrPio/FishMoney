@@ -161,11 +161,12 @@ namespace Prefabs
 
         private IEnumerator PlayRetreatClip()
         {
+            _audioSource.pitch = _gm.HasWater ? 1.15f : 1f;
             while (_state is HookState.Retreating)
             {
-                yield return new WaitForSeconds(retreatClipDelay / 2);
+                yield return new WaitForSeconds(retreatClipDelay / 2 / (_gm.HasWater ? 1.35f : 1f));
                 _audioSource.PlayOneShot(retreatClip);
-                yield return new WaitForSeconds(retreatClipDelay / 2);
+                yield return new WaitForSeconds(retreatClipDelay / 2 / (_gm.HasWater ? 1.35f : 1f));
             }
         }
 

@@ -35,7 +35,7 @@ namespace Managers
             IsMobile
                 ? IsHookDown.GetAsTrigger()
                 : HasJoystick()
-                    ? Input.GetKeyDown(KeyCode.Joystick1Button0)
+                    ? Input.GetKey(KeyCode.Joystick1Button0)
                     : Input.GetKeyDown(KeyCode.Space) || Input.GetKey(KeyCode.DownArrow);
 
         public bool GetBombDown() =>
@@ -57,9 +57,9 @@ namespace Managers
         {
             if (HasJoystick())
             {
-                Gamepad.current.SetMotorSpeeds(1f, 1f);
+                Gamepad.current.SetMotorSpeeds(0.5f, 1f);
                 yield return new WaitForSeconds(duration);
-                Gamepad.current.ResetHaptics();
+                Gamepad.current.SetMotorSpeeds(0f, 0f);
             }
             else if (IsMobile)
             {

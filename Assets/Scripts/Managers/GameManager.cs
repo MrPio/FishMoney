@@ -127,9 +127,11 @@ namespace Managers
             // Pause Menu
             if (_isInLevel && InputManager.Instance.GetPauseDown())
             {
-                pauseMenu.SetActive(!IsPaused);
-                _audioSource.PlayOneShot(pauseMenu ? menuCloseClip : slideClip);
                 IsPaused = !IsPaused;
+                pauseMenu.SetActive(IsPaused);
+                _audioSource.PlayOneShot(pauseMenu ? slideClip : menuCloseClip);
+                Cursor.lockState = IsPaused ? CursorLockMode.None : CursorLockMode.Locked;
+                Cursor.visible = IsPaused;
             }
         }
 
